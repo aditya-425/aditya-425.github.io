@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAR TERRITORY</title>
+
 <style>
 body {
   margin: 0;
@@ -123,3 +130,110 @@ footer {
   color: white;
 }
 </style>
+</head>
+
+<body>
+
+<header>
+  <h1>SAVIOUR STAR</h1>
+  <p>Psychopath | Auraman | Criminal</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#content">Content</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p class="glow">YOUR SAVIOUR IS HERE ✨</p>
+</section>
+
+<section id="content">
+  <h2>My Content</h2>
+
+  <div class="grid">
+
+    <!-- C FILES -->
+    <div class="card">
+      <h3>C FILES</h3>
+      <a href="AVL%20TREE.c" download>AVL TREE</a>
+      <a href="maxheap.c" download>Max Heap</a>
+      <a href="bft.c" download>BFT</a>
+      <a href="bfs%20list.c" download>BFS List</a>
+      <a href="BCC.c" download>BCC</a>
+      <a href="quicksort.c" download>Quick Sort</a>
+      <a href="knapsackDP.c" download>Knapsack</a>
+      <a href="NqueenBT.c" download>N Queen</a>
+    </div>
+
+    <!-- PDF FILES -->
+    <div class="card">
+      <h3>PDF FILES</h3>
+      <a href="1D.html" download>1D</a>
+      <a href="2D.html" download>2D</a>
+      <a href="4A(i).html" download>4A(i)</a>
+      <a href="4A(v).html" download>4A(v)</a>
+      <a href="7C.html" download>7C</a>
+      <a href="8B.html" download>8B</a>
+      <a href="8F.html" download>8F</a>
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div class="card">
+      <h3>DOCUMENTS</h3>
+      <p>IN PROGRESS... 69%</p>
+
+      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
+        Watch Video
+      </a>
+
+      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
+        🎬 Movies here darling
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Send Message</h2>
+
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <textarea name="message" rows="4" placeholder="Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<div id="popup" class="popup">MSG SENT TO ⭐</div>
+
+<footer>
+  <p>© 2025 SAVIOUR STAR</p>
+</footer>
+
+<script>
+const form = document.getElementById("contact-form");
+const popup = document.getElementById("popup");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const res = await fetch("https://formspree.io/f/xdapnpgo", {
+    method: "POST",
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  });
+
+  if (res.ok) {
+    form.reset();
+    popup.style.display = "block";
+    setTimeout(() => popup.style.display = "none", 3000);
+  }
+});
+</script>
+
+</body>
+</html>
