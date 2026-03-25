@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STAR TERRITORY</title>
-
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #e6fffb; /* light turquoise */
-  color: #033;
+  background: #ffffff; /* white background */
+  color: #333;
 }
 
 /* HEADER */
 header {
-  background: #0f766e;
+  background: #0f766e; /* turquoise */
   color: white;
   text-align: center;
   padding: 20px;
@@ -40,15 +33,15 @@ section {
 
 h2 {
   text-align: center;
+  color: #0f766e;
 }
 
-/* GLOW TEXT */
+/* NORMAL TEXT (no glow now) */
 .glow {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #0f766e;
-  text-shadow: 0 0 10px #5eead4, 0 0 20px #5eead4;
 }
 
 /* GRID */
@@ -60,26 +53,26 @@ h2 {
 
 /* CARD */
 .card {
-  background: #ccfbf1;
+  background: #f9f9f9;
   padding: 15px;
   border-radius: 10px;
   transition: 0.3s;
-  border: 1px solid #99f6e4;
+  border: 1px solid #ddd;
 }
 
 /* POP HOVER */
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(15,118,110,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
-/* LINKS */
+/* BUTTONS / LINKS */
 .card a {
   display: block;
   margin: 6px 0;
   padding: 8px;
   text-align: center;
-  background: #0f766e;
+  background: #14b8a6; /* turquoise buttons */
   color: white;
   border-radius: 5px;
   text-decoration: none;
@@ -87,35 +80,27 @@ h2 {
 }
 
 .card a:hover {
-  background: #14b8a6;
+  background: #0f766e;
 }
 
 /* FORM */
-.contact form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 500px;
-  margin: auto;
-}
-
 .contact input,
 .contact textarea {
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #5eead4;
+  border: 1px solid #ccc;
 }
 
 .contact button {
   padding: 10px;
-  background: #0f766e;
+  background: #14b8a6;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .contact button:hover {
-  background: #14b8a6;
+  background: #0f766e;
 }
 
 /* POPUP */
@@ -124,7 +109,7 @@ h2 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #0f766e;
+  background: #14b8a6;
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
@@ -138,110 +123,3 @@ footer {
   color: white;
 }
 </style>
-</head>
-
-<body>
-
-<header>
-  <h1>SAVIOUR STAR</h1>
-  <p>Psychopath | Auraman | Criminal</p>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#content">Content</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section id="about">
-  <h2>About Me</h2>
-  <p class="glow">YOUR SAVIOUR IS HERE.....</p>
-</section>
-
-<section id="content">
-  <h2>My Content</h2>
-
-  <div class="grid">
-
-    <!-- C FILES -->
-    <div class="card">
-      <h3>C FILES</h3>
-      <a href="AVL%20TREE.c" download>AVL TREE</a>
-      <a href="maxheap.c" download>Max Heap</a>
-      <a href="bft.c" download>BFT</a>
-      <a href="bfs%20list.c" download>BFS List</a>
-      <a href="BCC.c" download>BCC</a>
-      <a href="quicksort.c" download>Quick Sort</a>
-      <a href="knapsackDP.c" download>Knapsack</a>
-      <a href="NqueenBT.c" download>N Queen</a>
-    </div>
-
-    <!-- PDF FILES -->
-    <div class="card">
-      <h3>PDF FILES</h3>
-      <a href="1D.html" download>1D</a>
-      <a href="2D.html" download>2D</a>
-      <a href="4A(i).html" download>4A(i)</a>
-      <a href="4A(v).html" download>4A(v)</a>
-      <a href="7C.html" download>7C</a>
-      <a href="8B.html" download>8B</a>
-      <a href="8F.html" download>8F</a>
-    </div>
-
-    <!-- DOCUMENTS -->
-    <div class="card">
-      <h3>DOCUMENTS</h3>
-      <p>IN PROGRESS... 69%</p>
-
-      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
-        Watch Video
-      </a>
-
-      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
-        🎬 Movies here darling
-      </a>
-    </div>
-
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <h2>Send Message</h2>
-
-  <form id="contact-form">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <textarea name="message" rows="4" placeholder="Message"></textarea>
-    <button type="submit">Send</button>
-  </form>
-</section>
-
-<div id="popup" class="popup">MSG SENT TO ⭐</div>
-
-<footer>
-  <p>© 2025 SAVIOUR STAR</p>
-</footer>
-
-<script>
-const form = document.getElementById("contact-form");
-const popup = document.getElementById("popup");
-
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const data = new FormData(form);
-
-  const res = await fetch("https://formspree.io/f/xdapnpgo", {
-    method: "POST",
-    body: data,
-    headers: { 'Accept': 'application/json' }
-  });
-
-  if (res.ok) {
-    form.reset();
-    popup.style.display = "block";
-    setTimeout(() => popup.style.display = "none", 3000);
-  }
-});
-</script>
-
-</body>
-</html>
