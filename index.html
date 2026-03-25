@@ -13,20 +13,11 @@ body {
   color: #333;
 }
 
-/* HEADER */
 header {
   background: #2c3e50;
   color: white;
   padding: 20px 0;
   text-align: center;
-}
-
-header h1 {
-  margin: 0;
-}
-
-nav {
-  margin-top: 10px;
 }
 
 nav a {
@@ -40,7 +31,6 @@ nav a:hover {
   color: #1abc9c;
 }
 
-/* SECTIONS */
 section {
   padding: 40px 20px;
   max-width: 900px;
@@ -52,7 +42,6 @@ h2 {
   color: #2c3e50;
 }
 
-/* CARDS */
 .project-card {
   background: white;
   padding: 20px;
@@ -60,22 +49,15 @@ h2 {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* BUTTONS */
-.project-card a,
-.doc-links a {
+.project-card a {
   display: block;
   margin: 10px 0;
   padding: 12px;
   text-align: center;
   border-radius: 6px;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* Different colors */
-.project-card a {
   background: #3498db;
+  text-decoration: none;
 }
 
 .project-card a:hover {
@@ -90,7 +72,6 @@ h2 {
   background: #e67e22;
 }
 
-/* FORM */
 .contact form {
   display: flex;
   flex-direction: column;
@@ -104,11 +85,6 @@ h2 {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.contact textarea {
-  resize: none;
 }
 
 .contact button {
@@ -124,7 +100,6 @@ h2 {
   background: #34495e;
 }
 
-/* FOOTER */
 footer {
   background: #2c3e50;
   color: white;
@@ -148,22 +123,16 @@ footer {
   </nav>
 </header>
 
-<!-- ABOUT -->
 <section id="about">
   <h2>About Me</h2>
-  <p style="text-align:center; font-weight:bold; font-size:1.5rem;">
+  <p style="text-align:center; font-size:1.5rem;">
     Hello! YOUR SAVIOUR IS HERE....
-  </p>
-  <p style="text-align:center;">
-    [aakariki nuv kuda ikkade vachaav anamata , sugar techhukunnava mari,ledha without sugar aa?]
   </p>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <h2>C FILES</h2>
   <div class="project-card">
-
     <a href="AVL%20TREE.c" download>💻 AVL TREE</a>
     <a href="maxheap.c" download>💻 Max Heap</a>
     <a href="bft.c" download>💻 BFT</a>
@@ -172,15 +141,12 @@ footer {
     <a href="quicksort.c" download>💻 Quick Sort</a>
     <a href="knapsackDP.c" download>💻 Knapsack</a>
     <a href="NqueenBT.c" download>💻 N Queen</a>
-
   </div>
 </section>
 
-<!-- PDF SECTION -->
 <section id="pdfs">
   <h2>PDF Section</h2>
   <div class="project-card">
-
     <a href="1D.html" download>📄 1D</a>
     <a href="2D.html" download>📄 2D</a>
     <a href="4A(i).html" download>📄 4A(i)</a>
@@ -188,50 +154,31 @@ footer {
     <a href="7C.html" download>📄 7C</a>
     <a href="8B.html" download>📄 8B</a>
     <a href="8F.html" download>📄 8F</a>
-
   </div>
 </section>
 
-<!-- DOCUMENTS -->
 <section>
   <h2>Documents</h2>
   <div class="project-card">
     <p>WAIT... IN PROGRESS... 69%</p>
-
     <div class="doc-links">
-      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
-        🎬 Watch Video
-      </a>
-
-      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
-        🔗 Download Docs
-      </a>
+      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">🎬 Watch Video</a>
+      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">🔗 Download Docs</a>
     </div>
   </div>
 </section>
 
-<!-- FEEDBACK -->
 <section id="feedback" class="contact">
   <h2>Send Feedback</h2>
-
   <form id="contact-form">
     <input type="text" name="name" placeholder="Your Name" required>
-    
     <input type="email" name="email" placeholder="Your Email" required>
-    
     <textarea name="message" rows="5" placeholder="Type your message..." required></textarea>
-    
     <button type="submit">Send Message</button>
   </form>
-
   <p id="form-status" style="text-align:center;"></p>
-
-  <p style="text-align:center; margin-top:10px;">
-    Message goes directly to you ⭐
-  </p>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <h2>Contact</h2>
   <p style="text-align:center;">
@@ -239,12 +186,10 @@ footer {
   </p>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <p>© 2025 SAVIOUR STAR</p>
 </footer>
 
-<!-- SCRIPT -->
 <script>
 const form = document.getElementById("contact-form");
 const status = document.getElementById("form-status");
@@ -257,9 +202,7 @@ form.addEventListener("submit", async function(e) {
   const response = await fetch("https://formspree.io/f/xdapnpgo", {
     method: "POST",
     body: data,
-    headers: {
-      'Accept': 'application/json'
-    }
+    headers: { 'Accept': 'application/json' }
   });
 
   if (response.ok) {
@@ -272,353 +215,4 @@ form.addEventListener("submit", async function(e) {
 </script>
 
 </body>
-</html>  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.contact button:hover {
-  background: #34495e;
-}
-
-/* FOOTER */
-footer {
-  background: #2c3e50;
-  color: white;
-  text-align: center;
-  padding: 15px;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>SAVIOUR STAR</h1>
-  <p>Psychopath | Auraman | Criminal</p>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#pdfs">PDF</a>
-    <a href="#feedback">Feedback</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<!-- ABOUT -->
-<section id="about">
-  <h2>About Me</h2>
-  <p style="text-align:center; font-weight:bold; font-size:1.5rem;">
-    Hello! YOUR SAVIOUR IS HERE....
-  </p>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <h2>C FILES</h2>
-  <div class="projects-grid">
-    <div class="project-card">
-
-      <a href="AVL%20TREE.c" download>💻 AVL TREE</a>
-      <a href="maxheap.c" download>💻 Max Heap</a>
-      <a href="bft.c" download>💻 BFT</a>
-      <a href="bfs%20list.c" download>💻 BFS List</a>
-      <a href="BCC.c" download>💻 BCC</a>
-      <a href="quicksort.c" download>💻 Quick Sort</a>
-      <a href="knapsackDP.c" download>💻 Knapsack</a>
-      <a href="NqueenBT.c" download>💻 N Queen</a>
-
-    </div>
-  </div>
-</section>
-
-<!-- PDF SECTION -->
-<section id="pdfs">
-  <h2>PDF Section</h2>
-  <div class="project-card">
-
-    <a href="1D.html" download>📄 1D</a>
-    <a href="2D.html" download>📄 2D</a>
-    <a href="4A(i).html" download>📄 4A(i)</a>
-    <a href="4A(v).html" download>📄 4A(v)</a>
-    <a href="7C.html" download>📄 7C</a>
-    <a href="8B.html" download>📄 8B</a>
-    <a href="8F.html" download>📄 8F</a>
-
-  </div>
-</section>
-
-<!-- DOCUMENTS -->
-<section>
-  <h2>Documents</h2>
-  <div class="project-card">
-    <p>WAIT... IN PROGRESS... 69%</p>
-
-    <div class="doc-links">
-      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
-        🎬 Watch Video
-      </a>
-
-      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
-        🔗 Download Docs
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- FEEDBACK -->
-<section id="feedback" class="contact">
-  <h2>Send Feedback</h2>
-
-  <form action="https://formspree.io/f/xdapnpgo" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <textarea name="message" rows="5" placeholder="Type your message..." required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
-
-  <p style="text-align:center;">Message goes directly to ⭐</p>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
-  <p style="text-align:center;">
-    Email: <a href="mailto:stopinvestigating@gmail.com">stopinvestigating@gmail.com</a>
-  </p>
-</section>
-
-<footer>
-  <p>© 2025 SAVIOUR STAR</p>
-</footer>
-
-</body>
-</html>  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 600px;
-  margin: auto;
-}
-
-.contact input,
-.contact textarea {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.contact textarea {
-  resize: none;
-}
-
-.contact button {
-  padding: 12px;
-  background: #2c3e50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.contact button:hover {
-  background: #34495e;
-}
-  </style>
-        </head>
-  </style>
-</head>
-<body>
-  <header>
-    <h1>SAVIOUR STAR</h1>
-    <p>Psychopath | Auraman | Criminal</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-<section id="about" class="about">
-  <h2>About Me</h2>
-  <p style="text-align:center; font-weight:bold; font-size:1.5rem; margin-top:40px;">
-    Hello! YOUR SAVIOUR IS HERE....
-  </p>
-  <p style="text-align:center; font-size:1.2rem; margin-top:10px;">
-    [aakariki nuv kuda ikkade vachaav anamata , sugar techhukunnava mari,ledha without sugar aa?]
-  </p>
-</section>
-
-
-
-  <section id="projects" class="projects">
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      
-      <div class="project-card">
-         <h3>C FILES</h3>
-        
-        <h3>Implementation of AVL Tree</h3>
-        <a href="AVL%20TREE.c" download>💻 Download AVL TREE.C File</a>
-        
-        <h3>Max Heap Implementation (C Project)</h3>
-  <a href="maxheap.c" download>💻 Download maxheap.C File</a>
-
-         <h3>Breadth First Traversal (C Project)</h3>
-  <a href="bft.c" download>💻 Download BFT.C File</a>
-
-         <h3>BFS List Implementation (C Project)</h3>
-  <a href="bfs%20list.c" download>💻 Download bfs list.C File</a>
-
-        <h3>Biconnected Components (BCC) Implementation (C Project)</h3>
-  <a href="BCC.c" download>💻 Download BCC.C File</a>
-
-         <h3>Quick Sort Implementation (C Project)</h3>
-  <a href="quicksort.c" download>💻 Download quicksort.C File</a>
-
-         <h3>0/1 Knapsack Dynamic Programming (C Project)</h3>
-  <a href="knapsackDP.c" download>💻 Download knapsackDP.C File</a>
-
-          <h3>N Queens Implementation using BT (C Project)</h3>
-  <a href="NqueenBT.c" download>💻 Download NqueenBT.C File</a>
-      </div>
-
-  <section id="pdfs" class="projects">
-  <h2>PDF Section</h2>
-  <div class="project-card">
-
-    <h3>1D File</h3>
-    <a href="1D.html" download>📄 Download 1D</a>
-
-    <h3>2D File</h3>
-    <a href="2D.html" download>📄 Download 2D</a>
-
-    <h3>4A(i) File</h3>
-    <a href="4A(i).html" download>📄 Download 4A(i)</a>
-
-    <h3>4A(v) File</h3>
-    <a href="4A(v).html" download>📄 Download 4A(v)</a>
-
-    <h3>7C File</h3>
-    <a href="7C.html" download>📄 Download 7C</a>
-
-    <h3>8B File</h3>
-    <a href="8B.html" download>📄 Download 8B</a>
-
-    <h3>8F File</h3>
-    <a href="8F.html" download>📄 Download 8F</a>
-
-  </div>
-  </section>
-
-<div class="project-card">
-  <h3>DOCUMENTS</h3>
-  <p>
-    WAIT......IN PROGRESS...69%
-  </p>
-  
-  <div class="doc-links">
-  <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
-    🎬 Watch Video
-  </a>
-
-  <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
-    🔗 Download Documents (MEGA Link)
-  </a>
-
-  <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-  </div>
-</div>
-</div>
-        <head>
-        </section>
-  <section id="feedback" class="contact">
-  <h2>Send MESSAGE</h2>
-
-  <form id="contact-form">
-    <input type="text" name="name" placeholder="Your Name" required>
-    
-    <input type="email" name="email" placeholder="Your Email" required>
-    
-    <textarea name="message" rows="5" placeholder="Type your message..." required></textarea>
-    
-    <button type="submit">Send Message</button>
-  </form>
-
-  <p id="form-status" style="text-align:center;"></p>
-
-  <p style="text-align:center; margin-top:10px;">
-    Your message will be sent directly to me 📩
-  </p>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-<p style="text-align:center; font-size:1.2rem; margin-top:30px;">
-  If this helps you then you should pay me. Clear your history, and help your friend IDIOT.
-</p>
-    <ul>
-      <li>Email: <a href="mailto:stopinvestigating@gmail.com">stopinvestigating@gmail.com</a></li>
-      <li>LinkedIn: <a href="#">trytogetme.com/in/@noprofile</a></li>
-      <li>GitHub: <a href="#">justandordinaryperson.com/@ordinaryguy</a></li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 THOMAS SHELBY. All rights reserved.</p>
-  </footer>
-          <script>
-const form = document.getElementById("contact-form");
-const status = document.getElementById("form-status");
-
-form.addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const data = new FormData(form);
-
-  const response = await fetch("https://formspree.io/f/xdapnpgo", {
-    method: "POST",
-    body: data,
-    headers: {
-      'Accept': 'application/json'
-    }
-  });
-
-  if (response.ok) {
-    status.innerHTML = "✅ Message sent successfully!";
-    form.reset();
-  } else {
-    status.innerHTML = "❌ Oops! Something went wrong.";
-  }
-});
-</script>
-</body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
