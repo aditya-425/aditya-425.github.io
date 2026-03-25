@@ -18,15 +18,15 @@ body {
 
 /* HEADER */
 header {
-  background: #a7f3d0; /* pale turquoise */
-  color: #065f5b;
+  background: #0f766e; /* pale turquoise */
+  color: white;
   text-align: center;
   padding: 20px;
 }
 
 /* NAV */
 nav a {
-  color: #065f5b;
+  color: white;
   margin: 0 15px;
   text-decoration: none;
 }
@@ -82,7 +82,7 @@ h2 {
   margin: 6px 0;
   padding: 8px;
   text-align: center;
-  background: #5eead4; /* pale turquoise buttons */
+  background: #14b8a6; /* pale turquoise buttons */
   color: white;
   border-radius: 6px;
   text-decoration: none;
@@ -105,6 +105,112 @@ h2 {
 }
 
 .contact button {
+  padding: 10px;
+  background: #14b8a6; /* no gradient */
+  border: none;
+  color: white;
+  border-radius: 6px;
+}
+
+/* POPUP MESSAGE */
+.popup {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #14b8a6;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #0f766e; /* same pale turquoise */
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>SAVIOUR STAR</h1>
+  <p>Psychopath | Auraman | Criminal</p>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <p style="font-weight:700; font-size:1.5rem;">YOUR SAVIOUR IS HERE</p>
+</section>
+
+<section>
+  <h2>My Content</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>C FILES</h3>
+      <a href="AVL%20TREE.c">AVL TREE</a>
+      <a href="maxheap.c">Max Heap</a>
+      <a href="bft.c">BFT</a>
+      <a href="bfs%20list.c">BFS List</a>
+      <a href="BCC.c">BCC</a>
+      <a href="quicksort.c">Quick Sort</a>
+      <a href="knapsackDP.c">Knapsack</a>
+      <a href="NqueenBT.c">N Queen</a>
+    </div>
+
+    <div class="card">
+      <h3>PDF FILES</h3>
+      <a href="1D.html">1D</a>
+      <a href="2D.html">2D</a>
+      <a href="4A(i).html">4A(i)</a>
+      <a href="4A(v).html">4A(v)</a>
+      <a href="7C.html">7C</a>
+      <a href="8B.html">8B</a>
+      <a href="8F.html">8F</a>
+    </div>
+
+    <div class="card">
+      <h3>DOCUMENTS</h3>
+      <a href="#">Watch Video</a>
+      <a href="#">🎬 Movies here darling</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Send Message</h2>
+  <form id="contact-form">
+    <input type="text" placeholder="Your Name" required>
+    <textarea placeholder="Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<div id="popup" class="popup">MSG SENT TO ⭐</div>
+
+<footer>
+  <p>© 2025 SAVIOUR STAR</p>
+</footer>
+
+<script>
+const form = document.getElementById("contact-form");
+const popup = document.getElementById("popup");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  popup.style.display="block";
+  setTimeout(()=>popup.style.display="none",3000);
+});
+</script>
+
+</body>
+</html>
   padding: 10px;
   background: #5eead4; /* no gradient */
   border: none;
