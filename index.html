@@ -18,15 +18,15 @@ body {
 
 /* HEADER */
 header {
-  background: #0f766e;
-  color: white;
+  background: #a7f3d0; /* pale turquoise */
+  color: #065f5b;
   text-align: center;
   padding: 20px;
 }
 
 /* NAV */
 nav a {
-  color: white;
+  color: #065f5b;
   margin: 0 15px;
   text-decoration: none;
 }
@@ -44,13 +44,14 @@ nav a {
   overflow: hidden;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 260px }
+/* CENTER ALL SECTIONS */
+section {
+  text-align: center;
+  padding: 20px;
 }
 
-@keyframes blink {
-  50% { border-color: transparent }
+h2 {
+  text-align: center;
 }
 
 /* GRID */
@@ -61,26 +62,15 @@ nav a {
   padding: 30px;
 }
 
-/* FLOATING GLASS CARDS */
+/* CARDS */
 .card {
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.9);
   border-radius: 12px;
   padding: 15px;
   border: 1px solid rgba(0,0,0,0.1);
-  animation: float 4s ease-in-out infinite;
   transition: 0.3s;
 }
 
-.card:nth-child(2) { animation-delay: 1s; }
-.card:nth-child(3) { animation-delay: 2s; }
-
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* HOVER POP */
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -92,30 +82,10 @@ nav a {
   margin: 6px 0;
   padding: 8px;
   text-align: center;
-  background: #5eead4; /* mild turquoise */
+  background: #5eead4; /* pale turquoise buttons */
   color: white;
   border-radius: 6px;
   text-decoration: none;
-}
-
-/* TOOLTIP POPUP */
-.card a::after {
-  content: "Click to open 🚀";
-  position: absolute;
-  background: #0f766e;
-  color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  border-radius: 5px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.3s;
-  pointer-events: none;
-}
-
-.card a:hover::after {
-  opacity: 1;
-  transform: translateY(-5px);
 }
 
 /* FORM */
@@ -136,9 +106,10 @@ nav a {
 
 .contact button {
   padding: 10px;
-  background: linear-gradient(45deg,#14b8a6,#0ea5e9);
+  background: #5eead4; /* no gradient */
   border: none;
   color: white;
+  border-radius: 6px;
 }
 
 /* POPUP MESSAGE */
@@ -147,7 +118,7 @@ nav a {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #0f766e;
+  background: #5eead4;
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
@@ -157,15 +128,8 @@ nav a {
 footer {
   text-align: center;
   padding: 10px;
-  background: #0f766e;
-  color: white;
-  section {
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
-}
+  background: #a7f3d0; /* same pale turquoise */
+  color: #065f5b;
 }
 </style>
 </head>
@@ -179,7 +143,7 @@ h2 {
 
 <section>
   <h2>About Me</h2>
-  <p class="glow">YOUR SAVIOUR IS HERE</p>
+  <p>YOUR SAVIOUR IS HERE</p>
 </section>
 
 <section>
