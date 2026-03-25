@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>attribute selector</title>
+<style>
+a[target]{
+background-color: yellow;
+}
+a[target = "_blank"]{
+background-color: green;
+}
+</style>
+</head>
+<body>
+<h2>CSS Attribute Selectors</h2>
+<p>The link with target attribute gets a yellow background</p>
+<p>The link with target="_blank" attribute value gets a green 
+background</p>
+<a href="https://www.google.com" target="_top">google.com</a> 
+<br><br>
+<a href="https://www.disney.com" 
+target="_blank">disney.com</a>
+</body>
+</html>

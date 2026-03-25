@@ -1,0 +1,60 @@
+<html>
+<head> <title>Array Object Example</title> </head>
+<body>
+<h1>JavaScript Array Object Example</h1>
+<p><strong>Array:</strong> <span id="arrayDisplay">[Apple, 
+Banana, Mango]</span></p>
+<button onclick="addElement()">Push (Add 'Orange')</button>
+<button onclick="removeLast()">Pop (Remove Last)</button>
+<button onclick="removeFirst()">Shift (Remove First)</button>
+<button onclick="addFirst()">Unshift (Add 'Grapes' at 
+Start)</button>
+<button onclick="sortArray()">Sort Array</button>
+<button onclick="reverseArray()">Reverse Array</button>
+<button onclick="joinArray()">Join Elements</button>
+<p id="message"></p>
+<script>
+let fruits = ["Apple", "Banana", "Mango"];
+function updateDisplay() {
+document.getElementById("arrayDisplay").innerText = "[" + 
+fruits.join(", ") + "]"; }
+function addElement() {
+fruits.push("Orange");
+updateDisplay();
+document.getElementById("message").innerText = "Added 
+'Orange' to the array."; }
+function removeLast() {
+let removed = fruits.pop();
+updateDisplay();
+document.getElementById("message").innerText = "Removed '" 
++ removed + "' from the
+array.";}
+function removeFirst() {
+let removed = fruits.shift();
+updateDisplay();
+document.getElementById("message").innerText = "Removed '" 
++ removed + "' from the
+array."}
+  function addFirst() {
+fruits.unshift("Grapes");
+updateDisplay();
+document.getElementById("message").innerText = "Added 
+'Grapes' to the start of the
+array."; }
+function sortArray() {
+fruits.sort();
+updateDisplay();
+document.getElementById("message").innerText = "Array 
+sorted."; }
+function reverseArray() {
+fruits.reverse();
+updateDisplay();
+document.getElementById("message").innerText = "Array 
+reversed."; }
+function joinArray() {
+let joinedString = fruits.join(" - ");
+document.getElementById("message").innerText = "Joined 
+Array: " + joinedString; }
+</script>
+</body>
+</html>
