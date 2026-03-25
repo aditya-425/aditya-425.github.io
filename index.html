@@ -9,102 +9,114 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f9;
-  color: #333;
+  background: #0f172a;
+  color: white;
 }
 
+/* HEADER */
 header {
-  background: #2c3e50;
-  color: white;
-  padding: 20px 0;
+  background: #020617;
   text-align: center;
+  padding: 20px;
+  animation: fadeDown 1s ease;
 }
 
 nav a {
   color: white;
   margin: 0 15px;
   text-decoration: none;
-  font-weight: bold;
 }
 
 nav a:hover {
-  color: #1abc9c;
+  color: #38bdf8;
 }
 
+/* SECTIONS */
 section {
   padding: 40px 20px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: auto;
 }
 
 h2 {
   text-align: center;
-  color: #2c3e50;
 }
 
-.project-card {
-  background: white;
+/* GRID LAYOUT */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: #1e293b;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  transition: 0.3s;
+  animation: fadeUp 1s ease;
 }
 
-.project-card a {
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 20px rgba(56,189,248,0.5);
+}
+
+/* LINKS */
+.card a {
   display: block;
   margin: 10px 0;
-  padding: 12px;
+  padding: 10px;
   text-align: center;
+  background: #38bdf8;
+  color: black;
   border-radius: 6px;
-  color: white;
-  background: #3498db;
   text-decoration: none;
+  transition: 0.3s;
 }
 
-.project-card a:hover {
-  background: #2980b9;
+.card a:hover {
+  background: #0ea5e9;
 }
 
-.doc-links a:first-child {
-  background: #28a745;
-}
-
-.doc-links a:last-child {
-  background: #e67e22;
-}
-
+/* CONTACT */
 .contact form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  max-width: 600px;
-  margin: auto;
+  gap: 10px;
 }
 
 .contact input,
 .contact textarea {
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
 }
 
 .contact button {
-  padding: 12px;
-  background: #2c3e50;
-  color: white;
+  padding: 10px;
+  background: #38bdf8;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
 }
 
-.contact button:hover {
-  background: #34495e;
-}
-
+/* FOOTER */
 footer {
-  background: #2c3e50;
-  color: white;
   text-align: center;
   padding: 15px;
+  background: #020617;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -116,74 +128,77 @@ footer {
   <p>Psychopath | Auraman | Criminal</p>
   <nav>
     <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#pdfs">PDF</a>
-    <a href="#feedback">Feedback</a>
+    <a href="#content">Content</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section id="about">
   <h2>About Me</h2>
-  <p style="text-align:center; font-size:1.5rem;">
+  <p style="text-align:center; font-size:1.3rem;">
     Hello! YOUR SAVIOUR IS HERE....
   </p>
 </section>
 
-<section id="projects">
-  <h2>C FILES</h2>
-  <div class="project-card">
-    <a href="AVL%20TREE.c" download>💻 AVL TREE</a>
-    <a href="maxheap.c" download>💻 Max Heap</a>
-    <a href="bft.c" download>💻 BFT</a>
-    <a href="bfs%20list.c" download>💻 BFS List</a>
-    <a href="BCC.c" download>💻 BCC</a>
-    <a href="quicksort.c" download>💻 Quick Sort</a>
-    <a href="knapsackDP.c" download>💻 Knapsack</a>
-    <a href="NqueenBT.c" download>💻 N Queen</a>
-  </div>
-</section>
+<!-- SIDE BY SIDE SECTION -->
+<section id="content">
+  <h2>My Content</h2>
 
-<section id="pdfs">
-  <h2>PDF Section</h2>
-  <div class="project-card">
-    <a href="1D.html" download>📄 1D</a>
-    <a href="2D.html" download>📄 2D</a>
-    <a href="4A(i).html" download>📄 4A(i)</a>
-    <a href="4A(v).html" download>📄 4A(v)</a>
-    <a href="7C.html" download>📄 7C</a>
-    <a href="8B.html" download>📄 8B</a>
-    <a href="8F.html" download>📄 8F</a>
-  </div>
-</section>
+  <div class="grid">
 
-<section>
-  <h2>Documents</h2>
-  <div class="project-card">
-    <p>WAIT... IN PROGRESS... 69%</p>
-    <div class="doc-links">
-      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">🎬 Watch Video</a>
-      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">🔗 Download Docs</a>
+    <!-- C FILES -->
+    <div class="card">
+      <h3>C FILES</h3>
+      <a href="AVL%20TREE.c" download>AVL TREE</a>
+      <a href="maxheap.c" download>Max Heap</a>
+      <a href="bft.c" download>BFT</a>
+      <a href="bfs%20list.c" download>BFS List</a>
+      <a href="BCC.c" download>BCC</a>
+      <a href="quicksort.c" download>Quick Sort</a>
+      <a href="knapsackDP.c" download>Knapsack</a>
+      <a href="NqueenBT.c" download>N Queen</a>
     </div>
+
+    <!-- PDF -->
+    <div class="card">
+      <h3>PDF FILES</h3>
+      <a href="1D.html" download>1D</a>
+      <a href="2D.html" download>2D</a>
+      <a href="4A(i).html" download>4A(i)</a>
+      <a href="4A(v).html" download>4A(v)</a>
+      <a href="7C.html" download>7C</a>
+      <a href="8B.html" download>8B</a>
+      <a href="8F.html" download>8F</a>
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div class="card">
+      <h3>DOCUMENTS</h3>
+      <p>IN PROGRESS... 69%</p>
+
+      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
+        Watch Video
+      </a>
+
+      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
+        Download Docs
+      </a>
+    </div>
+
   </div>
 </section>
 
-<section id="feedback" class="contact">
-  <h2>Send Feedback</h2>
+<section id="contact" class="contact">
+  <h2>Send Message</h2>
+
   <form id="contact-form">
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="5" placeholder="Type your message..." required></textarea>
-    <button type="submit">Send Message</button>
+    <textarea name="message" rows="4" placeholder="Message"></textarea>
+    <button type="submit">Send</button>
   </form>
-  <p id="form-status" style="text-align:center;"></p>
-</section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p style="text-align:center;">
-    Email: <a href="mailto:stopinvestigating@gmail.com">stopinvestigating@gmail.com</a>
-  </p>
+  <p id="status"></p>
 </section>
 
 <footer>
@@ -192,24 +207,24 @@ footer {
 
 <script>
 const form = document.getElementById("contact-form");
-const status = document.getElementById("form-status");
+const status = document.getElementById("status");
 
 form.addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const data = new FormData(form);
 
-  const response = await fetch("https://formspree.io/f/xdapnpgo", {
+  const res = await fetch("https://formspree.io/f/xdapnpgo", {
     method: "POST",
     body: data,
     headers: { 'Accept': 'application/json' }
   });
 
-  if (response.ok) {
-    status.innerHTML = "✅ Message sent successfully!";
+  if (res.ok) {
+    status.innerHTML = "✅ Sent!";
     form.reset();
   } else {
-    status.innerHTML = "❌ Something went wrong!";
+    status.innerHTML = "❌ Error!";
   }
 });
 </script>
