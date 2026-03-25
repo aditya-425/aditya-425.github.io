@@ -9,13 +9,13 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #ffffff;
-  color: #222;
+  background: #e6fffb; /* light turquoise */
+  color: #033;
 }
 
 /* HEADER */
 header {
-  background: #111;
+  background: #0f766e;
   color: white;
   text-align: center;
   padding: 20px;
@@ -28,10 +28,10 @@ nav a {
 }
 
 nav a:hover {
-  color: #ff4d6d;
+  color: #99f6e4;
 }
 
-/* SECTIONS */
+/* SECTION */
 section {
   padding: 30px 15px;
   max-width: 1100px;
@@ -45,41 +45,41 @@ h2 {
 /* GLOW TEXT */
 .glow {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #ff4d6d;
-  text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
+  color: #0f766e;
+  text-shadow: 0 0 10px #5eead4, 0 0 20px #5eead4;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 15px;
 }
 
 /* CARD */
 .card {
-  background: #f8f8f8;
+  background: #ccfbf1;
   padding: 15px;
   border-radius: 10px;
   transition: 0.3s;
-  border: 1px solid #ddd;
+  border: 1px solid #99f6e4;
 }
 
-/* POP-UP HOVER EFFECT */
+/* POP HOVER */
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(15,118,110,0.3);
 }
 
 /* LINKS */
 .card a {
   display: block;
-  margin: 8px 0;
+  margin: 6px 0;
   padding: 8px;
   text-align: center;
-  background: #111;
+  background: #0f766e;
   color: white;
   border-radius: 5px;
   text-decoration: none;
@@ -87,7 +87,7 @@ h2 {
 }
 
 .card a:hover {
-  background: #ff4d6d;
+  background: #14b8a6;
 }
 
 /* FORM */
@@ -103,45 +103,38 @@ h2 {
 .contact textarea {
   padding: 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #5eead4;
 }
 
 .contact button {
   padding: 10px;
-  background: #111;
+  background: #0f766e;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .contact button:hover {
-  background: #ff4d6d;
+  background: #14b8a6;
 }
 
-/* POPUP MESSAGE */
+/* POPUP */
 .popup {
   display: none;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #111;
+  background: #0f766e;
   color: white;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px black;
-  animation: fadeIn 0.5s;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
 }
 
 /* FOOTER */
 footer {
   text-align: center;
   padding: 10px;
-  background: #111;
+  background: #0f766e;
   color: white;
 }
 </style>
@@ -161,7 +154,7 @@ footer {
 
 <section id="about">
   <h2>About Me</h2>
-  <p class="glow">YOUR SAVIOUR IS HERE ✨</p>
+  <p class="glow">YOUR SAVIOUR IS HERE.....</p>
 </section>
 
 <section id="content">
@@ -176,14 +169,22 @@ footer {
       <a href="maxheap.c" download>Max Heap</a>
       <a href="bft.c" download>BFT</a>
       <a href="bfs%20list.c" download>BFS List</a>
+      <a href="BCC.c" download>BCC</a>
+      <a href="quicksort.c" download>Quick Sort</a>
+      <a href="knapsackDP.c" download>Knapsack</a>
+      <a href="NqueenBT.c" download>N Queen</a>
     </div>
 
-    <!-- PDF -->
+    <!-- PDF FILES -->
     <div class="card">
       <h3>PDF FILES</h3>
       <a href="1D.html" download>1D</a>
       <a href="2D.html" download>2D</a>
+      <a href="4A(i).html" download>4A(i)</a>
+      <a href="4A(v).html" download>4A(v)</a>
+      <a href="7C.html" download>7C</a>
       <a href="8B.html" download>8B</a>
+      <a href="8F.html" download>8F</a>
     </div>
 
     <!-- DOCUMENTS -->
@@ -213,7 +214,6 @@ footer {
   </form>
 </section>
 
-<!-- POPUP -->
 <div id="popup" class="popup">MSG SENT TO ⭐</div>
 
 <footer>
@@ -238,10 +238,7 @@ form.addEventListener("submit", async function(e) {
   if (res.ok) {
     form.reset();
     popup.style.display = "block";
-
-    setTimeout(() => {
-      popup.style.display = "none";
-    }, 3000);
+    setTimeout(() => popup.style.display = "none", 3000);
   }
 });
 </script>
