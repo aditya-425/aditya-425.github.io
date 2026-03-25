@@ -21,6 +21,14 @@ header {
   text-align: center;
 }
 
+header h1 {
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
+}
+
 nav a {
   color: white;
   margin: 0 15px;
@@ -44,12 +52,7 @@ h2 {
   color: #2c3e50;
 }
 
-/* PROJECT CARDS */
-.projects-grid {
-  display: grid;
-  gap: 20px;
-}
-
+/* CARDS */
 .project-card {
   background: white;
   padding: 20px;
@@ -61,8 +64,8 @@ h2 {
 .project-card a,
 .doc-links a {
   display: block;
-  margin: 8px 0;
-  padding: 10px;
+  margin: 10px 0;
+  padding: 12px;
   text-align: center;
   border-radius: 6px;
   color: white;
@@ -70,6 +73,7 @@ h2 {
   font-weight: bold;
 }
 
+/* Different colors */
 .project-card a {
   background: #3498db;
 }
@@ -100,12 +104,175 @@ h2 {
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.contact textarea {
+  resize: none;
 }
 
 .contact button {
   padding: 12px;
   background: #2c3e50;
   color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.contact button:hover {
+  background: #34495e;
+}
+
+/* FOOTER */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>SAVIOUR STAR</h1>
+  <p>Psychopath | Auraman | Criminal</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#pdfs">PDF</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <p style="text-align:center; font-weight:bold; font-size:1.5rem;">
+    Hello! YOUR SAVIOUR IS HERE....
+  </p>
+  <p style="text-align:center;">
+    [aakariki nuv kuda ikkade vachaav anamata , sugar techhukunnava mari,ledha without sugar aa?]
+  </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>C FILES</h2>
+  <div class="project-card">
+
+    <a href="AVL%20TREE.c" download>💻 AVL TREE</a>
+    <a href="maxheap.c" download>💻 Max Heap</a>
+    <a href="bft.c" download>💻 BFT</a>
+    <a href="bfs%20list.c" download>💻 BFS List</a>
+    <a href="BCC.c" download>💻 BCC</a>
+    <a href="quicksort.c" download>💻 Quick Sort</a>
+    <a href="knapsackDP.c" download>💻 Knapsack</a>
+    <a href="NqueenBT.c" download>💻 N Queen</a>
+
+  </div>
+</section>
+
+<!-- PDF SECTION -->
+<section id="pdfs">
+  <h2>PDF Section</h2>
+  <div class="project-card">
+
+    <a href="1D.html" download>📄 1D</a>
+    <a href="2D.html" download>📄 2D</a>
+    <a href="4A(i).html" download>📄 4A(i)</a>
+    <a href="4A(v).html" download>📄 4A(v)</a>
+    <a href="7C.html" download>📄 7C</a>
+    <a href="8B.html" download>📄 8B</a>
+    <a href="8F.html" download>📄 8F</a>
+
+  </div>
+</section>
+
+<!-- DOCUMENTS -->
+<section>
+  <h2>Documents</h2>
+  <div class="project-card">
+    <p>WAIT... IN PROGRESS... 69%</p>
+
+    <div class="doc-links">
+      <a href="https://drive.google.com/file/d/18u6NV3CfrMaxOQCgixgxUsdN0r744yif/view" target="_blank">
+        🎬 Watch Video
+      </a>
+
+      <a href="https://mega.nz/folder/i8hWDA4D#15wwbskqG2pswBe-zZWPxQ" target="_blank">
+        🔗 Download Docs
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" class="contact">
+  <h2>Send Feedback</h2>
+
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required>
+    
+    <input type="email" name="email" placeholder="Your Email" required>
+    
+    <textarea name="message" rows="5" placeholder="Type your message..." required></textarea>
+    
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p id="form-status" style="text-align:center;"></p>
+
+  <p style="text-align:center; margin-top:10px;">
+    Message goes directly to you ⭐
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p style="text-align:center;">
+    Email: <a href="mailto:stopinvestigating@gmail.com">stopinvestigating@gmail.com</a>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 SAVIOUR STAR</p>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const response = await fetch("https://formspree.io/f/xdapnpgo", {
+    method: "POST",
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  if (response.ok) {
+    status.innerHTML = "✅ Message sent successfully!";
+    form.reset();
+  } else {
+    status.innerHTML = "❌ Something went wrong!";
+  }
+});
+</script>
+
+</body>
+</html>  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -425,7 +592,7 @@ form.addEventListener("submit", async function(e) {
     status.innerHTML = "❌ Oops! Something went wrong.";
   }
 });
-                               </script>
+</script>
 </body>
 </html>
 
