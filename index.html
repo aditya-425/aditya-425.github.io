@@ -143,7 +143,9 @@ footer {
 
 <section>
   <h2>About Me</h2>
-  <p style="font-weight:700; font-size:1.5rem;">YOUR SAVIOUR IS HERE</p>
+  <p style="font-weight:700; font-size:1.5rem;">
+  YOUR <span style="color:#14b8a6;">SAVIOUR</span> IS HERE
+</p>
 </section>
 
 <section>
@@ -204,10 +206,14 @@ const popup = document.getElementById("popup");
 
 form.addEventListener("submit", function(e){
   e.preventDefault();
+
   popup.style.display = "block";
+
+  // ✅ CLEAR FORM INPUTS
+  form.reset();
+
   setTimeout(() => popup.style.display = "none", 3000);
 });
 </script>
-
 </body>
 </html>
