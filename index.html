@@ -219,7 +219,7 @@ footer {
   const popup = document.getElementById("popup");
 
   form.addEventListener("submit", async function(e) {
-    e.preventDefault(); // stop redirect
+    e.preventDefault();
 
     const data = new FormData(form);
 
@@ -235,12 +235,11 @@ footer {
       if (response.ok) {
         form.reset();
 
-        // show popup
-        popup.style.display = "block";
+        // ✅ animation trigger
+        popup.classList.add("show");
 
-        // hide after 3 seconds
         setTimeout(() => {
-          popup.style.display = "none";
+          popup.classList.remove("show");
         }, 3000);
       }
     } catch (error) {
