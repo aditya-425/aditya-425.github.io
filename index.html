@@ -60,49 +60,64 @@ h2 {
 
 /* CARDS */
 
-.card a {
-  display: block;              /* one below another */
-  width: 140px;                /* same short length */
-  margin: 8px auto;            /* center buttons */
-  padding: 8px 0;
-  background: #14b8a6;
-  color: white;
-  border-radius: 20px;         /* rounded shape */
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.25s;
+/* CARDS (FRAME AROUND SECTIONS) */
+
+.card {
+  background: rgba(255,255,255,0.95);
+
+  border-radius: 14px;
+  padding: 18px;
+
+  border: 1px solid rgba(0,0,0,0.1);
+
+  transition: 0.3s;
+
+  text-align: center;
 }
 
-/* Hover effect */
+/* Floating hover effect */
 
-.card a:hover {
-  background: #0f766e;
-  transform: scale(1.05);
+.card:hover {
+  transform: translateY(-8px);
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.15);
 }
 
 /* BUTTON LINKS */
 
+/* BUTTONS */
+
 .card a {
-  display: inline-block;   /* makes buttons short */
-  margin: 6px 4px;
-  padding: 8px 14px;
+
+  display: block;           /* one below another */
+
+  width: 140px;             /* same length */
+
+  margin: 8px auto;         /* center */
+
+  padding: 8px 0;
+
   background: #14b8a6;
   color: white;
-  border-radius: 20px;     /* rounded pill buttons */
+
+  border-radius: 20px;
+
   text-decoration: none;
+
   font-size: 14px;
   font-weight: 500;
+
   transition: 0.25s;
 }
 
-/* Hover effect */
+/* Hover */
 
 .card a:hover {
+
   background: #0f766e;
+
   transform: scale(1.05);
 }
-  
 /* SUBTEXT */
 
 .subtext {
