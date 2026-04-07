@@ -60,18 +60,25 @@ h2 {
 
 /* CARDS */
 
-.card {
-  background: rgba(255,255,255,0.95);
-  border-radius: 14px;
-  padding: 18px;
-  border: 1px solid rgba(0,0,0,0.08);
-  transition: 0.3s;
-  text-align: center;
+.card a {
+  display: block;              /* one below another */
+  width: 140px;                /* same short length */
+  margin: 8px auto;            /* center buttons */
+  padding: 8px 0;
+  background: #14b8a6;
+  color: white;
+  border-radius: 20px;         /* rounded shape */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.25s;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+/* Hover effect */
+
+.card a:hover {
+  background: #0f766e;
+  transform: scale(1.05);
 }
 
 /* BUTTON LINKS */
@@ -96,6 +103,11 @@ h2 {
   transform: scale(1.05);
 }
 /* SUBTEXT */
+
+  .card h3 {
+  margin-bottom: 12px;
+  color: #0f766e;
+}
 
 .subtext {
   margin-top: 10px;
