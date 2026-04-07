@@ -66,6 +66,7 @@ h2 {
   padding: 18px;
   border: 1px solid rgba(0,0,0,0.08);
   transition: 0.3s;
+  text-align: center;
 }
 
 .card:hover {
@@ -76,22 +77,24 @@ h2 {
 /* BUTTON LINKS */
 
 .card a {
-  display: block;
-  margin: 6px 0;
-  padding: 9px;
-  text-align: center;
+  display: inline-block;   /* makes buttons short */
+  margin: 6px 4px;
+  padding: 8px 14px;
   background: #14b8a6;
   color: white;
-  border-radius: 6px;
+  border-radius: 20px;     /* rounded pill buttons */
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
   transition: 0.25s;
 }
 
+/* Hover effect */
+
 .card a:hover {
   background: #0f766e;
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
-
 /* SUBTEXT */
 
 .subtext {
