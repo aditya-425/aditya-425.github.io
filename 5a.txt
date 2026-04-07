@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<string.h>
+main() 
+{ 
+int n,i,twt,ttt,k,j,temp; 
+char p[20][20],c[20]; 
+int b[20],w[20],tat[20]; 
+float awt,att; 
+printf("Enter no.of process:"); 
+scanf("%d",&n); 
+for(i=1;i<=n;i++) 
+{ 
+printf("Enter process:"); 
+scanf("%s",p[i]); 
+printf("Enter burst time:"); 
+scanf("%d",&b[i]); 
+} 
+for(k=1;k<=n-1;k++) 
+{ 
+for(j=1;j<=n-k;j++) 
+{ 
+if(b[j]>b[j+1]) 
+{ 
+temp=b[j]; 
+b[j]=b[j+1]; 
+b[j+1]=temp; 
+strcpy(c,p[j]); 
+strcpy(p[j],p[j+1]); 
+strcpy(p[j+1],c); 
+}
+} 
+} 
+w[1]=0; 
+tat[1]=w[1]+b[1]; 
+twt=0; 
+ttt=tat[1]; 
+for(i=2;i<=n;i++) 
+{ 
+w[i]=w[i-1]+b[i-1]; 
+tat[i]=w[i]+b[i]; 
+twt=w[i]+twt; 
+ttt=tat[i]+ttt; 
+} 
+printf("s.no\tprocessname\tburst\ttwait\ttturn around\n"); 
+for(i=1;i<=n;i++) 
+{ 
+printf("%d\t%s\t\t%d\t%d\t%d\t\n",i,p[i],b[i],w[i],tat[i]); 
+} 
+printf("Total waiting time: %d\n",twt); 
+printf("Total turn around time: %d\n",ttt); 
+printf("Avg waiting time: %f\n",(float)twt/n); 
+printf("Avg turn around time: %f\n",(float)ttt/n); 
+}

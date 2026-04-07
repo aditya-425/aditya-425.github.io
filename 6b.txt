@@ -1,0 +1,48 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <pthread.h> 
+#include <semaphore.h> 
+#define MAX_PORTS 5  // Maximum number of ports allowed 
+// Semaphore to control the number of available ports 
+sem_t port_semaphore; 
+// Function to simulate opening a port 
+void* open_port(void* arg) { 
+// Wait for an available port 
+if (sem_wait(&port_semaphore) == 0) { 
+int thread_id = *((int*)arg); 
+printf("Thread %d: Port is open.\n", thread_id); 
+// Simulating some port usage time 
+sleep(2);  // Simulate port usage for 2 seconds 
+printf("Thread %d: Port is closed.\n", thread_id); 
+// Signal that the port is now available 
+sem_post(&port_semaphore); 
+} else { 
+printf("Thread %d: Could not open a port, semaphore wait failed.\n", *((int*)arg)); 
+} 
+return NULL;
+} 
+int main() { 
+// Initialize the semaphore with MAX_PORTS value 
+if (sem_init(&port_semaphore, 0, MAX_PORTS) != 0) { 
+perror("Semaphore initialization failed"); 
+return -1; 
+} 
+// Array of thread ids 
+pthread_t threads[10]; 
+int thread_ids[10]; 
+// Create threads (simulating different processes trying to use the ports) 
+for (int i = 0; i < 10; i++) { 
+thread_ids[i] = i + 1;  // Assign thread ids starting from 1 
+if (pthread_create(&threads[i], NULL, open_port, &thread_ids[i]) != 0) { 
+perror("Thread creation failed"); 
+return -1; 
+} 
+} 
+// Wait for all threads to complete 
+for (int i = 0; i < 10; i++) { 
+pthread_join(threads[i], NULL); 
+} 
+// Destroy the semaphore 
+sem_destroy(&port_semaphore); 
+return 0; 
+}

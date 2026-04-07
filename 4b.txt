@@ -1,0 +1,73 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <pthread.h> 
+#include <unistd.h> 
+#define MAX_PORTS 5  // Maximum number of ports allowed 
+// Monitor structure for managing ports 
+typedef struct { 
+int available_ports;     
+// Number of available ports 
+pthread_mutex_t mutex;   // Mutex for critical section 
+pthread_cond_t cond_var; // Condition variable for waiting 
+} PortMonitor; 
+// Initialize the port monitor 
+void init_monitor(PortMonitor* monitor) { 
+monitor->available_ports = MAX_PORTS; 
+pthread_mutex_init(&monitor->mutex, NULL); 
+pthread_cond_init(&monitor->cond_var, NULL); 
+} 
+// Acquire a port from the monitor 
+void acquire_port(PortMonitor* monitor) { 
+pthread_mutex_lock(&monitor->mutex); 
+// Wait if no ports are available 
+while (monitor->available_ports == 0) { 
+printf("No available ports. Waiting...\n"); 
+pthread_cond_wait(&monitor->cond_var, &monitor->mutex); 
+} 
+// Allocate a port (decrease available ports) 
+monitor->available_ports--; 
+printf("Port acquired. Available ports: %d\n", monitor->available_ports); 
+pthread_mutex_unlock(&monitor->mutex); 
+} 
+// Release a port back to the monitor 
+void release_port(PortMonitor* monitor) { 
+pthread_mutex_lock(&monitor->mutex); 
+// Release the port (increase available ports) 
+monitor->available_ports++; 
+printf("Port released. Available ports: %d\n", monitor->available_ports); 
+// Signal that a port has been released 
+pthread_cond_signal(&monitor->cond_var); 
+pthread_mutex_unlock(&monitor->mutex); 
+} 
+// Function to simulate opening a port 
+void* open_port(void* arg) { 
+PortMonitor* monitor = (PortMonitor*)arg; 
+// Acquire a port 
+acquire_port(monitor); 
+// Simulate using the port for a short time 
+sleep(2); // Simulate port usage for 2 seconds 
+// Release the port after usage 
+release_port(monitor); 
+return NULL; 
+} 
+int main() { 
+PortMonitor monitor; 
+init_monitor(&monitor); 
+// Array of threads to simulate different processes 
+pthread_t threads[10]; 
+// Create threads (simulating processes trying to use ports) 
+for (int i = 0; i < 10; i++) { 
+if (pthread_create(&threads[i], NULL, open_port, &monitor) != 0) { 
+perror("Thread creation failed"); 
+return -1; 
+} 
+} 
+// Wait for all threads to complete 
+for (int i = 0; i < 10; i++) { 
+pthread_join(threads[i], NULL); 
+} 
+// Cleanup the mutex and condition variable 
+pthread_mutex_destroy(&monitor.mutex); 
+pthread_cond_destroy(&monitor.cond_var); 
+return 0; 
+}
