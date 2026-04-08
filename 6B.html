@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Output Methods</title>
+</head>
+<body>
+
+<h1>JavaScript Output Methods</h1>
+
+<p id="output"></p>
+
+<button onclick="useConsoleLog()">Console Log</button>
+<button onclick="useAlert()">Alert Box</button>
+<button onclick="useDocumentWrite()">Document Write</button>
+<button onclick="useInnerHTML()">InnerHTML</button>
+
+<script>
+  function useConsoleLog() {
+    console.log("This is output from console.log()");
+  }
+
+  function useAlert() {
+    alert("This is output from alert()");
+  }
+
+  function useDocumentWrite() {
+    document.write("This is output from document.write() (Note: It replaces the whole page!)");
+  }
+
+  function useInnerHTML() {
+    document.getElementById("output").innerHTML =
+      "This is output from innerHTML!";
+  }
+</script>
+
+</body>
+</html>

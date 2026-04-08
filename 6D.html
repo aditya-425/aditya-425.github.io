@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voter Eligibility Check</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    table {
+      width: 50%;
+      margin: auto;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: lightgray;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Voter Eligibility Checker</h1>
+
+<button onclick="getVoterDetails()">Enter Voter Details</button>
+
+<br><br>
+
+<table id="voterTable" style="display: none;">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Eligibility</th>
+  </tr>
+  <tr>
+    <td id="voterName"></td>
+    <td id="voterAge"></td>
+    <td id="voterStatus"></td>
+  </tr>
+</table>
+
+<script>
+  function getVoterDetails() {
+
+    let name = prompt("Enter your name:");
+    if (!name) return; // Stop if name is empty or cancelled
+
+    let age = prompt("Enter your age:");
+    if (!age || isNaN(age)) {
+      alert("Please enter a valid age!");
+      return;
+    }
+
+    age = parseInt(age);
+
+    let eligibility = (age >= 18)
+      ? "Eligible to Vote"
+      : "Not Eligible to Vote";
+
+    document.getElementById("voterName").innerText = name;
+    document.getElementById("voterAge").innerText = age;
+    document.getElementById("voterStatus").innerText = eligibility;
+
+    document.getElementById("voterTable").style.display = "table"; // Show table
+  }
+</script>
+
+</body>
+</html>
