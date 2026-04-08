@@ -1,0 +1,29 @@
+SQL> CREATE TABLE STUDENT(SID NUMBER(10),SNAME
+VARCHAR2(20),RANK VARCHAR(10));
+SQL> INSERT INTO STUDENT VALUES(501,'Ravi','second');
+SQL> INSERT INTO STUDENT VALUES (502,'Raju','third');
+SQL> INSERT INTO STUDENT VALUES (503,'Ramu','');
+
+
+
+
+
+set serveroutput on;
+DECLARE
+sno student.sid%type;
+name student.sname%type; srank student.rank%type;
+BEGIN
+sno := &sno;
+name := '&name';
+srank := '&srank';
+INSERT into student values(sno,name,srank);
+dbms_output.put_line('One record inserted');
+COMMIT;
+-- adding savepoint SAVEPOINT s1;
+-- second time asking user for input sno := &sno;
+name := '&name';
+srank := '&srank';
+INSERT into student values(sno,name,srank);
+dbms_output.put_line('One record inserted');
+ROLLBACK TO SAVEPOINT s1;
+END;

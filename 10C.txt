@@ -1,0 +1,28 @@
+CREATE TABLE Student10 (
+ sno NUMBER(5),
+ sname VARCHAR2(20)
+);
+INSERT INTO Student10 VALUES (1, 'Rajesh');
+INSERT INTO Student10 VALUES (2, 'Ramesh');
+INSERT INTO Student10 VALUES (3, 'Suresh');
+COMMIT;
+
+
+--> import java.sql.*;
+class Jdbc4 {
+public static void main(String args[]){
+Connection con=null;
+Statement stmt=null;
+try{
+Class.forName("oracle.jdbc.driver.OracleDriver");
+System.out.println("Driver class loaded.....");
+con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","syst
+em","aditya");
+System.out.println("Connected with oracle .....");
+stmt=con.createStatement();
+stmt.executeUpdate("update Student10 set sname='Ravi' where sno=3");
+System.out.println("Record Updated .....");
+}catch(Exception e)
+{
+System.out.println("Error:"+e.getMessage());
+} } }
