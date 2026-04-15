@@ -8,20 +8,16 @@
 
 <title>STAR TERRITORY</title>
 
-<!-- SEO -->
 <meta name="description"
 content="SAVIOUR STAR official website downloads and content">
 
 <meta name="author"
 content="SAVIOUR STAR">
 
-<!-- Favicon -->
 <link rel="icon" href="logo.png">
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-<!-- Icons -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -38,8 +34,6 @@ body {
   transition: 0.3s;
 }
 
-/* DARK MODE */
-
 body.dark {
   background: #111;
   color: #eee;
@@ -55,7 +49,7 @@ header {
   position: relative;
 }
 
-/* DARK MODE BUTTON */
+/* DARK BUTTON */
 
 .dark-toggle {
   position: absolute;
@@ -161,29 +155,43 @@ body.dark .card {
   resize: none;
 }
 
-/* Upload Button */
+/* Upload Box */
 
-.contact a {
+.upload-box {
 
-  display: block;
-  width: 260px;
-  margin: auto;
+display: block;
+width: 260px;
+margin: auto;
 
-  padding: 10px;
+padding: 10px;
 
-  background: #14b8a6;
-  color: white;
+background: #14b8a6;
+color: white;
 
-  border-radius: 6px;
+border-radius: 6px;
 
-  text-decoration: none;
-  font-weight: 500;
+cursor: pointer;
 
-  transition: 0.25s;
+font-weight: 500;
+
+transition: 0.25s;
+
+text-align: center;
+
 }
 
-.contact a:hover {
-  background: #0f766e;
+.upload-box:hover {
+
+background: #0f766e;
+
+}
+
+/* Hide File Input */
+
+.upload-box input {
+
+display: none;
+
 }
 
 /* SEND BUTTON */
@@ -301,8 +309,7 @@ DOCUMENTS
 </h3>
 
 <a href="https://drive.google.com/drive/folders/1Xf1AdHJOPgPP55DD_AZ2QJFQ-Wot9zbI"
-target="_blank"
-rel="noopener noreferrer">
+target="_blank">
 
 🎬 Movies here darling
 
@@ -333,13 +340,39 @@ required
 minlength="5">
 </textarea>
 
-<a href="https://forms.gle/pWpJJtiB74uEVSWG8"
-target="_blank"
-rel="noopener noreferrer">
+<!-- FILE UPLOAD (NO REDIRECT) -->
+
+<form
+action="https://gleeful-zabaione-30885b.netlify.app/"
+method="POST"
+enctype="multipart/form-data"
+target="hidden_iframe"
+onsubmit="uploadStart()">
+
+<label class="upload-box">
+
+<span id="upload-text">
 
 📎 Upload Photos / Videos / PDFs
 
-</a>
+</span>
+
+<input
+type="file"
+name="file"
+id="fileInput"
+accept="image/*,video/*,.pdf"
+required>
+
+</label>
+
+</form>
+
+<iframe
+name="hidden_iframe"
+style="display:none;"
+onload="uploadDone()">
+</iframe>
 
 <button type="submit">
 Send
@@ -369,7 +402,39 @@ document.body.classList.toggle("dark");
 
 }
 
-/* FORM */
+/* FILE NAME SHOW */
+
+const fileInput =
+document.getElementById("fileInput");
+
+const uploadText =
+document.getElementById("upload-text");
+
+fileInput.addEventListener(
+"change",
+function() {
+
+if (fileInput.files.length > 0) {
+
+uploadText.textContent =
+"📄 " +
+fileInput.files[0].name;
+
+}
+
+}
+);
+
+/* UPLOAD DONE */
+
+function uploadDone() {
+
+uploadText.textContent =
+"FILE UPLOADED ⭐";
+
+}
+
+/* MESSAGE FORM */
 
 const form =
 document.getElementById("contact-form");
