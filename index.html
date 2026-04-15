@@ -335,7 +335,8 @@ target="_blank">
 
 <h2>Send Message</h2>
 
-<form id="contact-form">
+<form id="contact-form"
+enctype="multipart/form-data">
 
 <textarea
 name="message"
@@ -344,31 +345,23 @@ required
 minlength="5">
 </textarea>
 
-<!-- FILE UPLOAD (NO REDIRECT) -->
-
-<form
-action="https://gleeful-zabaione-30885b.netlify.app/"
-method="POST"
-enctype="multipart/form-data"
-target="hidden_iframe"
-onsubmit="uploadStart()">
-
 <label class="upload-box">
 
 <span id="upload-text">
-
 📎 Upload Photos / Videos / PDFs
-
 </span>
 
 <input
 type="file"
 name="file"
 id="fileInput"
-accept="image/*,video/*,.pdf"
-required>
+accept="image/*,video/*,.pdf">
 
 </label>
+
+<button type="submit">
+Send
+</button>
 
 </form>
 
@@ -467,6 +460,28 @@ headers: {
 }
 });
 
+/* SEND TO NETLIFY */
+
+await fetch(
+"https://gleeful-zabaione-30885b.netlify.app/",
+{
+method: "POST",
+body: data
+
+  fileInput.addEventListener(
+"change",
+function() {
+
+if (fileInput.files.length > 0) {
+
+uploadText.textContent =
+"📄 " +
+fileInput.files[0].name;
+
+}
+
+}
+);
 if (response.ok) {
 
 form.reset();
