@@ -319,16 +319,19 @@ target="_blank">
 
 <h2>Send Message</h2>
 
-<form id="contact-form"
+<form
+name="contact"
+method="POST"
+data-netlify="true"
 enctype="multipart/form-data">
 
+<!-- REQUIRED hidden input -->
+<input type="hidden" name="form-name" value="contact">
 <textarea
 name="message"
 placeholder="Message"
-required
-minlength="5">
+required>
 </textarea>
-
 <label class="upload-box">
 
 <span id="upload-text">
@@ -348,7 +351,6 @@ Send
 </button>
 
 </form>
-
 </section>
 
 <div id="popup" class="popup">
