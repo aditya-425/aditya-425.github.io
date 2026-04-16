@@ -70,10 +70,6 @@ section {
   padding: 25px 15px;
 }
 
-h2 {
-  margin-bottom: 10px;
-}
-
 /* GRID */
 
 .grid {
@@ -128,14 +124,6 @@ body.dark .card {
 
   background: #0f766e;
   transform: scale(1.05);
-}
-
-/* SUBTEXT */
-
-.subtext {
-  margin-top: 10px;
-  font-size: 0.85rem;
-  color: #555;
 }
 
 /* CONTACT FORM */
@@ -315,13 +303,9 @@ target="_blank">
 
 </a>
 
-<p class="subtext">
+<p>
+"AIRDROID WEB LOGIN" ani search cheyyaali
 </p>
-  <p>"AIRDROID WEB LOGIN" ani search cheyyaali
-  <p>eesaari ikkada msg send chesinappudu ventane ikkada oka link pedatha adi click chesthe peru adugudhi star_darling_7 ani ichi natho chat 
-    cheyochu nuv peru ichaka kinda box laga untundi akkada click cheste keyboard vastundi apdu natho chat cheyochu chrome nundi eesari chrome loki vachinappudu cheppu 
-    ardam kakpothe video pedatha </p><br>
-  <p>nuv 12:39 AM ki naku msg pampavu nenu ventane em search cheyalo pettesa niku appati dhaka agalekapoyava chusko paina petta ga emani search cheyaalo chusko</p>
 
 </div>
 
@@ -358,18 +342,6 @@ id="fileInput"
 accept="image/*,video/*,.pdf">
 
 </label>
-
-<button type="submit">
-Send
-</button>
-
-</form>
-
-<iframe
-name="hidden_iframe"
-style="display:none;"
-onload="uploadDone()">
-</iframe>
 
 <button type="submit">
 Send
@@ -422,15 +394,6 @@ fileInput.files[0].name;
 }
 );
 
-/* UPLOAD DONE */
-
-function uploadDone() {
-
-uploadText.textContent =
-"FILE UPLOADED ⭐";
-
-}
-
 /* MESSAGE FORM */
 
 const form =
@@ -460,31 +423,12 @@ headers: {
 }
 });
 
-/* SEND TO NETLIFY */
-
-await fetch(
-"https://gleeful-zabaione-30885b.netlify.app/",
-{
-method: "POST",
-body: data
-
-  fileInput.addEventListener(
-"change",
-function() {
-
-if (fileInput.files.length > 0) {
-
-uploadText.textContent =
-"📄 " +
-fileInput.files[0].name;
-
-}
-
-}
-);
 if (response.ok) {
 
 form.reset();
+
+uploadText.textContent =
+"📎 Upload Photos / Videos / PDFs";
 
 popup.classList.add("show");
 
