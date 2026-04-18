@@ -320,18 +320,16 @@ target="_blank">
 <h2>Send Message</h2>
 
 <form
-name="contact"
+id="contact-form"
 method="POST"
-data-netlify="true"
 enctype="multipart/form-data">
 
-<!-- REQUIRED hidden input -->
-<input type="hidden" name="form-name" value="contact">
 <textarea
 name="message"
 placeholder="Message"
 required>
 </textarea>
+
 <label class="upload-box">
 
 <span id="upload-text">
@@ -429,16 +427,22 @@ if (response.ok) {
 
 form.reset();
 
-uploadText.textContent =
+document.getElementById(
+"upload-text"
+).textContent =
 "📎 Upload Photos / Videos / PDFs";
 
 popup.classList.add("show");
 
 setTimeout(() => {
-
 popup.classList.remove("show");
-
 }, 3000);
+
+}
+
+else {
+
+alert("Upload failed.");
 
 }
 
@@ -446,12 +450,13 @@ popup.classList.remove("show");
 
 catch (error) {
 
-console.log("Error:", error);
+console.log(error);
+
+alert("Error sending message.");
 
 }
 
 });
-
 </script>
 
 </body>
