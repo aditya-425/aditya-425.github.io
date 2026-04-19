@@ -248,24 +248,34 @@ Send Message
 
 </section>
 
-<!-- FILE UPLOAD (REDIRECT TO NETLIFY) -->
+<!-- FILE UPLOAD (CLOUDINARY) -->
 
 <section class="contact">
 
 <h2>Upload File</h2>
 
-<a href="https://shiny-sprite-5275af.netlify.app/">
+<label class="upload-box">
 
-<button type="button">
+<span id="upload-text">
+📎 Upload Photos / Videos
+</span>
 
-📎 Upload FILES
+<input
+type="file"
+id="fileInput"
+accept="image/*,video/*">
+
+</label>
+
+<button type="button" onclick="uploadFile()">
+
+Upload File
 
 </button>
 
-</a>
+<p id="status"></p>
 
 </section>
-
 <div id="popup" class="popup">
 MESSAGE SENT ⭐
 </div>
@@ -353,6 +363,80 @@ alert("Message failed.");
 }
 
 });
+
+  /* CLOUDINARY UPLOAD */
+
+function uploadFile(){
+
+const fileInput =
+document.getElementById("fileInput");
+
+const status =
+document.getElementById("status");
+
+const uploadText =
+document.getElementById("upload-text");
+
+const file =
+fileInput.files[0];
+
+if(!file){
+
+alert("Please select a file first.");
+return;
+
+}
+
+status.textContent =
+"Uploading...";
+
+const formData =
+new FormData();
+
+formData.append(
+"file",
+file
+);
+
+formData.append(
+"upload_preset",
+"saviour_upload"
+);
+
+fetch(
+"https://api.cloudinary.com/v1_1/dxfdjednm/upload",
+{
+method:"POST",
+body:formData
+}
+)
+
+.then(response =>
+response.json()
+)
+
+.then(data=>{
+
+status.textContent =
+"✅ File Uploaded Successfully!";
+
+alert("✅ File Uploaded Successfully!");
+
+window.location.href =
+"https://aditya-425.github.io/";
+
+})
+
+.catch(error=>{
+
+status.textContent =
+"❌ Upload failed.";
+
+alert("Upload failed.");
+
+});
+
+}
 
 </script>
 
