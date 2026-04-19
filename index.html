@@ -289,6 +289,8 @@ YOUR <span style="color:#0FFF50;">SAVIOUR</span> IS HERE
 <div id="progress-fill"></div>
 </div>
 
+<p id="progress-text">0%</p>
+
 <button type="button" onclick="uploadFile()">🚀 Upload File</button>
 
 <p id="status"></p>
@@ -355,6 +357,7 @@ function uploadFile(){
 const file = fileInput.files[0];
 const status = document.getElementById("status");
 const progressFill = document.getElementById("progress-fill");
+const progressText = document.getElementById("progress-text");
 
 if(!file){
 alert("Select a file first.");
@@ -372,8 +375,10 @@ xhr.open("POST", "https://api.cloudinary.com/v1_1/dxfdjednm/upload");
 
 xhr.upload.addEventListener("progress", function(e){
 if(e.lengthComputable){
-const percent = (e.loaded / e.total) * 100;
+const percent = Math.round((e.loaded / e.total) * 100);
+
 progressFill.style.width = percent + "%";
+progressText.textContent = percent + "%";
 }
 });
 
