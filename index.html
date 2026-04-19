@@ -301,6 +301,10 @@ YOUR <span style="color:#0FFF50;">SAVIOUR</span> IS HERE
 
 <div id="popup" class="popup">MESSAGE SENT ⭐</div>
 
+  <div id="upload-popup" class="popup">
+UPLOAD SUCCESSFULLY TO ⭐
+</div>
+  
 <footer>
 <p>© 2025 SAVIOUR STAR</p>
 </footer>
@@ -377,18 +381,20 @@ xhr.upload.addEventListener("progress", function(e){
 if(e.lengthComputable){
 const percent = Math.round((e.loaded / e.total) * 100);
 
-progressFill.style.width = percent + "%";
-progressText.textContent = percent + "%";
+progressFill.style.width = percent + "0%";
+progressText.textContent = percent + "0%";
 }
 });
 
 xhr.onload = function(){
 if(xhr.status === 200){
-status.innerHTML = "<span class='success-text'>✅ Upload Successful!</span>";
+const uploadPopup = document.getElementById("upload-popup");
+
+uploadPopup.classList.add("show");
 
 setTimeout(()=>{
-window.location.href = "https://aditya-425.github.io/";
-},1200);
+uploadPopup.classList.remove("show");
+},3000);
 
 } else {
 status.textContent = "❌ Upload failed.";
