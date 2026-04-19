@@ -257,6 +257,7 @@ Send Message
 <form
 name="file-upload"
 method="POST"
+netlify
 data-netlify="true"
 enctype="multipart/form-data"
 action="/success.html">
@@ -268,6 +269,12 @@ value="file-upload">
 <input type="hidden"
 name="subject"
 value="New File Upload">
+
+<p hidden>
+<label>Don't fill this out:
+<input name="bot-field">
+</label>
+</p>
 
 <label class="upload-box">
 
