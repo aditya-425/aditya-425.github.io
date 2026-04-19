@@ -252,10 +252,10 @@ Send Message
 
 <section class="contact">
 
-<h2>Upload Files</h2>
+<h2>Upload File</h2>
 
 <form
-name="upload"
+name="file-upload"
 method="POST"
 data-netlify="true"
 enctype="multipart/form-data"
@@ -263,20 +263,19 @@ action="/success.html">
 
 <input type="hidden"
 name="form-name"
-value="upload">
+value="file-upload">
 
 <label class="upload-box">
 
-<span id="upload-text">
+<span>
 📎 Upload Photos / Videos / PDFs
 </span>
 
 <input
 type="file"
 name="file"
-id="fileInput"
 accept="image/*,video/*,.pdf"
-multiple>
+required>
 
 </label>
 
