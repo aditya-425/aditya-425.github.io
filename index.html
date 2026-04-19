@@ -265,15 +265,20 @@ action="/success.html">
 name="form-name"
 value="file-upload">
 
+<input type="hidden"
+name="subject"
+value="New File Upload">
+
 <label class="upload-box">
 
-<span>
+<span id="upload-text">
 📎 Upload Photos / Videos / PDFs
 </span>
 
 <input
 type="file"
 name="file"
+id="fileInput"
 accept="image/*,video/*,.pdf"
 required>
 
@@ -313,16 +318,20 @@ document.getElementById("fileInput");
 const uploadText =
 document.getElementById("upload-text");
 
+if(fileInput){
+
 fileInput.addEventListener("change",function(){
 
 if(fileInput.files.length>0){
 
-uploadText.textContent=
+uploadText.textContent =
 "📄 "+fileInput.files[0].name;
 
 }
 
 });
+
+}
 
 /* FORMSPREE MESSAGE */
 
