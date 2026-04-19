@@ -143,6 +143,12 @@ border-radius:5px;
 overflow:hidden;
 }
 
+.progress-bar,
+#progress-text {
+display: none;
+}
+  
+
 #progress-fill{
 width:0%;
 height:100%;
@@ -362,11 +368,20 @@ const file = fileInput.files[0];
 const status = document.getElementById("status");
 const progressFill = document.getElementById("progress-fill");
 const progressText = document.getElementById("progress-text");
+const uploadPopup = document.getElementById("upload-popup");
 
 if(!file){
 alert("Select a file first.");
 return;
 }
+
+/* SHOW PROGRESS UI */
+document.querySelector(".progress-bar").style.display = "block";
+progressText.style.display = "block";
+
+/* RESET PROGRESS */
+progressFill.style.width = "0%";
+progressText.textContent = "0%";
 
 status.textContent = "Uploading...";
 
@@ -380,21 +395,29 @@ xhr.open("POST", "https://api.cloudinary.com/v1_1/dxfdjednm/upload");
 xhr.upload.addEventListener("progress", function(e){
 if(e.lengthComputable){
 const percent = Math.round((e.loaded / e.total) * 100);
-
-progressFill.style.width = percent + "0%";
-progressText.textContent = percent + "0%";
+progressFill.style.width = percent + "%";
+progressText.textContent = percent + "%";
 }
 });
 
 xhr.onload = function(){
 if(xhr.status === 200){
-const uploadPopup = document.getElementById("upload-popup");
 
 uploadPopup.classList.add("show");
 
 setTimeout(()=>{
 uploadPopup.classList.remove("show");
 },3000);
+
+/* RESET UI */
+fileInput.value = "";
+uploadText.textContent = "Click to select Photos / Videos";
+progressFill.style.width = "0%";
+progressText.textContent = "0%";
+status.textContent = "";
+
+document.querySelector(".progress-bar").style.display = "none";
+progressText.style.display = "none";
 
 } else {
 status.textContent = "❌ Upload failed.";
@@ -403,7 +426,6 @@ status.textContent = "❌ Upload failed.";
 
 xhr.send(formData);
 }
-
 </script>
 
 </body>
