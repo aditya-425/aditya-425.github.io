@@ -107,32 +107,6 @@ border:1px solid #ccc;
 resize:none;
 }
 
-.upload-box {
-display:block;
-width:260px;
-margin:auto;
-padding:10px;
-background:#14b8a6;
-color:white;
-border-radius:6px;
-cursor:pointer;
-text-align:center;
-}
-
-.upload-box input {
-display:none;
-}
-
-button {
-padding:12px;
-background:#14b8a6;
-border:none;
-color:white;
-border-radius:6px;
-cursor:pointer;
-}
-/* UPLOAD CONTAINER */
-
 .upload-container{
 max-width:400px;
 margin:auto;
@@ -140,8 +114,6 @@ display:flex;
 flex-direction:column;
 gap:15px;
 }
-
-/* UPLOAD BOX */
 
 .upload-box{
 display:block;
@@ -159,13 +131,9 @@ transform:scale(1.05);
 box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* HIDDEN INPUT */
-
 .upload-box input{
 display:none;
 }
-
-/* PROGRESS BAR */
 
 .progress-bar{
 width:100%;
@@ -182,9 +150,13 @@ background:#14b8a6;
 transition:0.2s;
 }
 
-/* BUTTON ANIMATION */
-
 button{
+padding:12px;
+background:#14b8a6;
+border:none;
+color:white;
+border-radius:6px;
+cursor:pointer;
 transition:0.3s;
 }
 
@@ -192,8 +164,6 @@ button:hover{
 transform:scale(1.05);
 box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
-
-/* SUCCESS ANIMATION */
 
 .success-text{
 color:#14b8a6;
@@ -205,7 +175,6 @@ animation:pop 0.4s ease;
 0%{transform:scale(0.7);}
 100%{transform:scale(1);}
 }
-  
 
 .popup {
 position:fixed;
@@ -240,10 +209,7 @@ color:white;
 
 <header>
 
-<button class="dark-toggle"
-onclick="toggleDark()">
-🌙
-</button>
+<button class="dark-toggle" onclick="toggleDark()">🌙</button>
 
 <h1>SAVIOUR STAR</h1>
 
@@ -269,10 +235,7 @@ YOUR <span style="color:#0FFF50;">SAVIOUR</span> IS HERE
 
 <div class="card">
 
-<h3>
-<i class="fa-solid fa-file"></i>
-TEXT FILES
-</h3>
+<h3><i class="fa-solid fa-file"></i> TEXT FILES</h3>
 
 <a href="10A.txt" download>📄 10A</a>
 <a href="10B.txt" download>📄 10B</a>
@@ -282,16 +245,10 @@ TEXT FILES
 
 <div class="card">
 
-<h3>
-<i class="fa-solid fa-folder"></i>
-DOCUMENTS
-</h3>
+<h3><i class="fa-solid fa-folder"></i> DOCUMENTS</h3>
 
-<a href="https://drive.google.com"
-target="_blank">
-
+<a href="https://drive.google.com" target="_blank">
 🎬 Movies here
-
 </a>
 
 </div>
@@ -300,30 +257,19 @@ target="_blank">
 
 </section>
 
-<!-- MESSAGE FORM (FORMSPREE) -->
-
 <section class="contact">
 
 <h2>Send Message</h2>
 
-<form
-id="message-form">
+<form id="message-form">
 
-<textarea
-name="message"
-placeholder="Type message..."
-required>
-</textarea>
+<textarea name="message" placeholder="Type message..." required></textarea>
 
-<button type="submit">
-Send Message
-</button>
+<button type="submit">Send Message</button>
 
 </form>
 
 </section>
-
-<!-- FILE UPLOAD (CLOUDINARY STYLED) -->
 
 <section class="contact">
 
@@ -333,239 +279,121 @@ Send Message
 
 <label class="upload-box">
 
-<span id="upload-text">
- Click to select Photos / Videos
-</span>
+<span id="upload-text">Click to select Photos / Videos</span>
 
-<input
-type="file"
-id="fileInput"
-accept="image/*,video/*">
+<input type="file" id="fileInput" accept="image/*,video/*">
 
 </label>
 
 <div class="progress-bar">
-
 <div id="progress-fill"></div>
-
 </div>
 
-<button type="button" onclick="uploadFile()">
-
-🚀 Upload File
-
-</button>
+<button type="button" onclick="uploadFile()">🚀 Upload File</button>
 
 <p id="status"></p>
 
 </div>
 
 </section>
-<div id="popup" class="popup">
-MESSAGE SENT ⭐
-</div>
+
+<div id="popup" class="popup">MESSAGE SENT ⭐</div>
 
 <footer>
-
 <p>© 2025 SAVIOUR STAR</p>
-
 </footer>
 
 <script>
 
 /* DARK MODE */
-
 function toggleDark(){
 document.body.classList.toggle("dark");
 }
 
-/* FILE NAME SHOW */
+/* FILE NAME DISPLAY */
+const fileInput = document.getElementById("fileInput");
+const uploadText = document.getElementById("upload-text");
 
-const fileInput =
-document.getElementById("fileInput");
-
-const uploadText =
-document.getElementById("upload-text");
-
-if(fileInput){
-
-fileInput.addEventListener("change",function(){
-
-if(fileInput.files.length>0){
-
-uploadText.textContent =
-"📄 "+fileInput.files[0].name;
-
+fileInput.addEventListener("change", function(){
+if(fileInput.files.length > 0){
+uploadText.textContent = "📄 " + fileInput.files[0].name;
 }
-
 });
 
-}
+/* MESSAGE FORM */
+const msgForm = document.getElementById("message-form");
+const popup = document.getElementById("popup");
 
-/* FORMSPREE MESSAGE */
-
-const msgForm =
-document.getElementById("message-form");
-
-const popup =
-document.getElementById("popup");
-
-msgForm.addEventListener("submit",
-async function(e){
-
+msgForm.addEventListener("submit", async function(e){
 e.preventDefault();
 
-const data =
-new FormData(msgForm);
+const data = new FormData(msgForm);
 
-const response =
-await fetch(
-"https://formspree.io/f/xdapnpgo",
-{
+const response = await fetch("https://formspree.io/f/xdapnpgo", {
 method:"POST",
 body:data,
-headers:{
-'Accept':'application/json'
-}
+headers:{'Accept':'application/json'}
 });
 
 if(response.ok){
-
 msgForm.reset();
-
 popup.classList.add("show");
 
 setTimeout(()=>{
 popup.classList.remove("show");
 },3000);
 
-}
-
-else{
-
+} else {
 alert("Message failed.");
-
 }
 
 });
 
-  /* CLOUDINARY UPLOAD */
-
+/* CLOUDINARY UPLOAD (FIXED) */
 function uploadFile(){
 
-/* FILE NAME + PROGRESS */
-
-const fileInput =
-document.getElementById("fileInput");
-
-const uploadText =
-document.getElementById("upload-text");
-
-if(fileInput){
-
-fileInput.addEventListener("change",function(){
-
-if(fileInput.files.length>0){
-
-uploadText.textContent =
-"📄 " + fileInput.files[0].name;
-
-}
-
-});
-
-}
-
-/* CLOUDINARY UPLOAD WITH PROGRESS */
-
-function uploadFile(){
-
-const file =
-fileInput.files[0];
-
-const status =
-document.getElementById("status");
-
-const progressFill =
-document.getElementById("progress-fill");
+const file = fileInput.files[0];
+const status = document.getElementById("status");
+const progressFill = document.getElementById("progress-fill");
 
 if(!file){
-
 alert("Select a file first.");
 return;
-
 }
 
-status.textContent =
-"Uploading...";
+status.textContent = "Uploading...";
 
-const formData =
-new FormData();
+const formData = new FormData();
+formData.append("file", file);
+formData.append("upload_preset", "saviour_upload");
 
-formData.append("file",file);
+const xhr = new XMLHttpRequest();
+xhr.open("POST", "https://api.cloudinary.com/v1_1/dxfdjednm/upload");
 
-formData.append(
-"upload_preset",
-"saviour_upload"
-);
-
-const xhr =
-new XMLHttpRequest();
-
-xhr.open(
-"POST",
-"https://api.cloudinary.com/v1_1/dxfdjednm/upload"
-);
-
-/* PROGRESS ANIMATION */
-
-xhr.upload.addEventListener(
-"progress",
-function(e){
-
+xhr.upload.addEventListener("progress", function(e){
 if(e.lengthComputable){
-
-const percent =
-(e.loaded / e.total) * 100;
-
-progressFill.style.width =
-percent + "%";
-
+const percent = (e.loaded / e.total) * 100;
+progressFill.style.width = percent + "%";
 }
-
-}
-);
+});
 
 xhr.onload = function(){
-
 if(xhr.status === 200){
-
-status.innerHTML =
-"<span class='success-text'>✅ Upload Successful!</span>";
+status.innerHTML = "<span class='success-text'>✅ Upload Successful!</span>";
 
 setTimeout(()=>{
-
-window.location.href =
-"https://aditya-425.github.io/";
-
+window.location.href = "https://aditya-425.github.io/";
 },1200);
 
+} else {
+status.textContent = "❌ Upload failed.";
 }
-
-else{
-
-status.textContent =
-"❌ Upload failed.";
-
-}
-
 };
 
 xhr.send(formData);
-
 }
+
 </script>
 
 </body>
-
 </html>
