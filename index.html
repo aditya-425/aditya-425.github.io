@@ -258,6 +258,42 @@ animation:pop 0.4s ease;
 100%{transform:scale(1);}
 }
 
+#preview-container{
+
+display:none;
+
+margin-top:15px;
+
+text-align:center;
+
+}
+
+#image-preview{
+
+max-width:100%;
+
+max-height:250px;
+
+border-radius:12px;
+
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+
+}
+
+#video-preview{
+
+max-width:100%;
+
+max-height:250px;
+
+border-radius:12px;
+
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+
+display:none;
+
+}
+
 .popup {
 position:fixed;
 bottom:20px;
@@ -372,6 +408,15 @@ YOUR <span style="color:#0FFF50;">SAVIOUR</span> IS HERE
 <input type="file" id="fileInput" accept="image/*,video/*">
 
 </label>
+  
+ <div id="preview-container">
+
+<img id="image-preview" />
+
+<video id="video-preview" controls></video>
+
+</div>
+  
 
 <div class="progress-bar">
 <div id="progress-fill"></div>
@@ -409,9 +454,52 @@ const fileInput = document.getElementById("fileInput");
 const uploadText = document.getElementById("upload-text");
 
 fileInput.addEventListener("change", function(){
-if(fileInput.files.length > 0){
-uploadText.textContent = "📄 " + fileInput.files[0].name;
+
+const file = fileInput.files[0];
+
+const previewContainer =
+document.getElementById("preview-container");
+
+const imagePreview =
+document.getElementById("image-preview");
+
+const videoPreview =
+document.getElementById("video-preview");
+
+if(file){
+
+uploadText.textContent = "📄 " + file.name;
+
+previewContainer.style.display = "block";
+
+const fileURL = URL.createObjectURL(file);
+
+/* IMAGE PREVIEW */
+
+if(file.type.startsWith("image/")){
+
+imagePreview.src = fileURL;
+imagePreview.style.display = "block";
+
+videoPreview.style.display = "none";
+videoPreview.src = "";
+
 }
+
+/* VIDEO PREVIEW */
+
+else if(file.type.startsWith("video/")){
+
+videoPreview.src = fileURL;
+videoPreview.style.display = "block";
+
+imagePreview.style.display = "none";
+imagePreview.src = "";
+
+}
+
+}
+
 });
 
 /* MESSAGE FORM */
