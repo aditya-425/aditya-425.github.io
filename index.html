@@ -63,11 +63,18 @@ padding:30px;
 }
 
 .card {
-background:rgba(255,255,255,0.95);
-border-radius:14px;
-padding:18px;
-border:1px solid rgba(0,0,0,0.1);
-transition:0.3s;
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+
+border-radius:18px;
+padding:20px;
+
+border:1px solid rgba(255,255,255,0.2);
+
+box-shadow:0 8px 30px rgba(0,0,0,0.15);
+
+transition:0.35s;
 }
 
 body.dark .card {
@@ -87,9 +94,9 @@ font-size:14px;
 transition:0.25s;
 }
 
-.card a:hover {
-background:#0f766e;
-transform:scale(1.05);
+.card:hover {
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
 }
 
 .contact form {
@@ -116,14 +123,22 @@ gap:15px;
 }
 
 .upload-box{
-display:block;
 padding:18px;
-background:linear-gradient(135deg,#14b8a6,#0f766e);
+background:#14b8a6;
 color:white;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 transition:0.3s;
 font-weight:500;
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+.upload-box:hover{
+
+background:#0f766e;
+
+transform:scale(1.04);
+
 }
 
 .upload-box:hover{
@@ -157,13 +172,27 @@ transition:0.2s;
 }
 
 button{
+
 padding:12px;
+
 background:#14b8a6;
+
 border:none;
+
 color:white;
+
 border-radius:6px;
+
 cursor:pointer;
+
 transition:0.3s;
+
+/* ADD THESE */
+
+font-family:'Poppins',sans-serif;
+font-size:15px;
+font-weight:500;
+
 }
 
 button:hover{
