@@ -947,8 +947,9 @@ return;
 /*
    Create download links.
 */
-
-data.forEach(function(file){
+data
+.filter(file => file.name !== "emptyFolderPlaceholder")
+.forEach(function(file){
 
 const fileItem =
 document.createElement("div");
