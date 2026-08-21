@@ -449,6 +449,74 @@ UPLOAD
 
 <!-- SHARED FILES -->
 
+  <!-- STAR CHAT -->
+
+<section class="contact">
+
+<h2>💬 STAR CHAT</h2>
+
+<div id="chat-box"
+style="
+max-width:700px;
+height:350px;
+margin:20px auto;
+padding:15px;
+overflow-y:auto;
+background:#f5f5f5;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+text-align:left;
+">
+
+<p style="color:#777;text-align:center;">
+Loading chat...
+</p>
+
+</div>
+
+<div style="max-width:700px;margin:auto;">
+
+<input
+type="text"
+id="chat-username"
+placeholder="Your username"
+maxlength="30"
+style="
+width:100%;
+box-sizing:border-box;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-bottom:10px;
+font-family:Poppins,sans-serif;
+">
+
+<textarea
+id="chat-message"
+placeholder="Type your message..."
+maxlength="500"
+rows="3"
+style="
+width:100%;
+box-sizing:border-box;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+resize:none;
+font-family:Poppins,sans-serif;
+"></textarea>
+
+<button
+type="button"
+onclick="sendChatMessage()"
+style="margin-top:10px;">
+SEND 🚀
+</button>
+
+</div>
+
+</section>
+
 <section>
 
 <h2>📁 Shared Files</h2>
@@ -879,6 +947,199 @@ progressText.style.display =
    LOAD SHARED FILES
 ========================================= */
 
+
+ /* =========================================
+   STAR CHAT
+========================================= */
+
+const chatUsername =
+document.getElementById("chat-username");
+
+const chatMessage =
+document.getElementById("chat-message");
+
+const chatBox =
+document.getElementById("chat-box");
+
+
+/* Remember username */
+
+const savedUsername =
+localStorage.getItem("starChatUsername");
+
+if(savedUsername){
+
+chatUsername.value =
+savedUsername;
+
+}
+
+
+/* Load messages */
+
+async function loadChatMessages(){
+
+const { data, error } =
+await supabaseClient
+.from("chat_messages")
+.select("*")
+.order("created_at", {
+ascending:true
+});
+
+if(error){
+
+console.error(error);
+
+chatBox.innerHTML =
+"<p>❌ Could not load chat.</p>";
+
+return;
+
+}
+
+
+chatBox.innerHTML = "";
+
+
+if(!data || data.length === 0){
+
+chatBox.innerHTML =
+"<p style='text-align:center;color:#777;'>No messages yet. Start the chat! ⭐</p>";
+
+return;
+
+}
+
+
+data.forEach(function(msg){
+
+const messageDiv =
+document.createElement("div");
+
+messageDiv.style.marginBottom =
+"12px";
+
+messageDiv.style.padding =
+"10px";
+
+messageDiv.style.background =
+"white";
+
+messageDiv.style.borderRadius =
+"10px";
+
+
+const username =
+document.createElement("strong");
+
+username.textContent =
+msg.username + ": ";
+
+
+const message =
+document.createElement("span");
+
+message.textContent =
+msg.message;
+
+
+messageDiv.appendChild(username);
+
+messageDiv.appendChild(message);
+
+chatBox.appendChild(messageDiv);
+
+});
+
+
+chatBox.scrollTop =
+chatBox.scrollHeight;
+
+}
+
+
+/* Send message */
+
+async function sendChatMessage(){
+
+const username =
+chatUsername.value.trim();
+
+const message =
+chatMessage.value.trim();
+
+
+if(!username){
+
+alert("Please enter a username.");
+
+chatUsername.focus();
+
+return;
+
+}
+
+
+if(!message){
+
+alert("Please type a message.");
+
+chatMessage.focus();
+
+return;
+
+}
+
+
+/* Save username */
+
+localStorage.setItem(
+"starChatUsername",
+username
+);
+
+
+const { error } =
+await supabaseClient
+.from("chat_messages")
+.insert({
+username:username,
+message:message
+});
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"Message failed: " +
+(error.message || "Unknown error")
+);
+
+return;
+
+}
+
+
+/* Clear message */
+
+chatMessage.value = "";
+
+
+/* Reload chat */
+
+loadChatMessages();
+
+}
+
+
+/* Load chat when page opens */
+
+loadChatMessages();
+
+  
 async function loadFiles(){
 
 const loading =
