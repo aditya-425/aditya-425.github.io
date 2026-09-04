@@ -985,7 +985,6 @@ supabaseClient
 .from(BUCKET_NAME)
 .getPublicUrl(file.name);
 
-
 const download =
 document.createElement("a");
 
@@ -993,16 +992,13 @@ download.className =
 "file-download";
 
 download.href =
-publicData.publicUrl;
-
-download.target =
-"_blank";
-
-download.rel =
-"noopener noreferrer";
+publicData.publicUrl +
+"?download=" +
+encodeURIComponent(file.name);
 
 download.textContent =
 "⬇ Download";
+
 
 
 fileItem.appendChild(
