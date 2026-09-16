@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,1022 +15,80 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-:root{
-  --teal:#0f766e;
-  --teal2:#14b8a6;
-  --gold:#c9972b;
-  --gold2:#e4bd5b;
-  --ink:#17211f;
-  --muted:#65706d;
-  --glass:rgba(255,255,255,.82);
-  --line:rgba(255,255,255,.62);
-  --shadow:0 14px 40px rgba(27,35,33,.18);
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  color:var(--ink);
-  background:#d8d5ca;
-  min-height:100vh;
-  transition:.3s;
-  overflow-x:hidden;
-}
-
-/* KGF BACKGROUND */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(15,30,29,.28),
-      rgba(10,25,25,.52)
-    ),
-    url("kgf-climax.png") center/cover fixed no-repeat;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,245,215,.16),
-      rgba(0,45,43,.25)
-    );
-
-  pointer-events:none;
-}
-
-body.dark{
-  color:#f5f2e9;
-  background:#101817;
-}
-
-body.dark::after{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,0,0,.2),
-      rgba(0,30,29,.5)
-    );
-}
-
-/* HEADER */
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-
-  min-height:72px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:12px 5%;
-
-  color:white;
-
-  background:rgba(9,35,34,.72);
-
-  border-bottom:
-    1px solid rgba(228,189,91,.55);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-
-  box-shadow:
-    0 8px 28px rgba(0,0,0,.16);
-}
-
-.header-brand{
-  text-align:center;
-}
-
-header h1{
-  margin:0;
-
-  font-size:
-    clamp(1.2rem,2vw,1.7rem);
-
-  letter-spacing:1.5px;
-  font-weight:700;
-}
-
-header p{
-  margin:2px 0 0;
-
-  font-size:10px;
-
-  opacity:.85;
-
-  text-align:center;
-}
-
-/* DARK MODE */
-
-.dark-toggle{
-  position:absolute;
-
-  top:18px;
-  right:4%;
-
-  background:rgba(255,255,255,.14);
-
-  color:white;
-
-  border:
-    1px solid rgba(255,255,255,.45);
-
-  padding:7px 12px;
-
-  border-radius:30px;
-
-  cursor:pointer;
-
-  box-shadow:none;
-}
-
-/* SECTIONS */
-
-section{
-  width:min(1180px,92%);
-  margin:0 auto;
-  padding:28px 0;
-}
-
-/* HERO */
-
-.hero{
-  min-height:330px;
-
-  display:flex;
-  flex-direction:column;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  color:white;
-
-  text-shadow:
-    0 2px 14px rgba(0,0,0,.55);
-}
-
-/* BLACK CIRCLE LOGO */
-
-.logo-circle{
-  width:112px;
-  height:112px;
-
-  border-radius:50%;
-
-  background:#050505;
-
-  border:
-    2px solid var(--gold2);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  box-shadow:
-    0 0 0 5px rgba(201,151,43,.16),
-    0 12px 35px rgba(0,0,0,.4);
-
-  margin-bottom:16px;
-}
-
-/* EXACT 5-POINT STAR */
-
-.logo-star{
-  width:64px;
-  height:64px;
-
-  color:#e1b747;
-
-  filter:
-    drop-shadow(
-      0 2px 5px
-      rgba(255,214,90,.35)
-    );
-}
-
-.hero .eyebrow{
-  font-size:11px;
-
-  letter-spacing:3px;
-
-  text-transform:uppercase;
-
-  color:#f2d37b;
-
-  font-weight:700;
-
-  margin:0 0 5px;
-}
-
-.hero h2{
-  font-size:
-    clamp(2rem,5vw,3.5rem);
-
-  margin:0;
-
-  font-weight:700;
-
-  letter-spacing:.5px;
-}
-
-.hero h2 span{
-  color:#f0c64d;
-}
-
-.hero .tagline{
-  font-size:14px;
-  margin:8px 0 0;
-}
-
-.hero .desc{
-  max-width:620px;
-
-  font-size:12px;
-
-  opacity:.9;
-
-  margin:10px auto;
-}
-
-/* SECTION TITLE */
-
-.section-title{
-  display:flex;
-
-  align-items:center;
-
-  gap:14px;
-
-  color:white;
-
-  margin:8px 0 18px;
-}
-
-.section-title::after{
-  content:"";
-
-  height:1px;
-
-  flex:1;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(228,189,91,.8),
-      transparent
-    );
-}
-
-.section-title h2{
-  margin:0;
-
-  font-size:1.15rem;
-
-  letter-spacing:.8px;
-}
-
-/* CONTENT GRID */
-
-.grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:18px;
-}
-
-/* CARDS */
-
-.card{
-  background:var(--glass);
-
-  border:
-    1px solid var(--line);
-
-  border-radius:20px;
-
-  padding:22px;
-
-  box-shadow:var(--shadow);
-
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-5px);
-
-  box-shadow:
-    0 20px 48px
-    rgba(20,30,29,.24);
-}
-
-.card h3{
-  margin:0 0 15px;
-
-  color:#183c39;
-
-  font-size:14px;
-}
-
-.card h3 i{
-  color:var(--teal);
-
-  margin-right:7px;
-}
-
-/* CONTENT BUTTONS */
-
-.card a{
-  display:flex;
-
-  align-items:center;
-  justify-content:space-between;
-
-  width:100%;
-
-  margin:9px 0;
-
-  padding:10px 14px;
-
-  background:
-    rgba(15,118,110,.09);
-
-  color:#164d48;
-
-  border:
-    1px solid rgba(15,118,110,.18);
-
-  border-radius:13px;
-
-  text-decoration:none;
-
-  font-size:12px;
-
-  transition:.25s;
-}
-
-.card a::after{
-  content:"›";
-
-  font-size:18px;
-
-  color:var(--gold);
-}
-
-.card a:hover{
-  background:var(--teal);
-
-  color:white;
-
-  transform:translateX(3px);
-}
-
-/* DARK CARDS */
-
-body.dark .card{
-  background:
-    rgba(18,30,29,.78);
-
-  border-color:
-    rgba(255,255,255,.13);
-}
-
-body.dark .card h3{
-  color:#f1eee4;
-}
-
-body.dark .card a{
-  color:#e8eee9;
-
-  background:
-    rgba(20,184,166,.1);
-}
-
-/* CONTACT ROW */
-
-.contact-row{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:18px;
-}
-
-.contact{
-  background:var(--glass);
-
-  border:
-    1px solid var(--line);
-
-  border-radius:20px;
-
-  box-shadow:var(--shadow);
-
-  backdrop-filter:blur(16px);
-
-  padding:22px;
-}
-
-.contact h2{
-  font-size:14px;
-
-  margin:0 0 14px;
-
-  color:#183c39;
-}
-
-body.dark .contact h2{
-  color:#f1eee4;
-}
-
-.contact form{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
-
-  max-width:none;
-
-  margin:auto;
-}
-
-/* MESSAGE BOX */
-
-textarea{
-  min-height:112px;
-
-  padding:14px;
-
-  border-radius:13px;
-
-  border:
-    1px solid rgba(20,60,57,.18);
-
-  background:
-    rgba(255,255,255,.58);
-
-  resize:vertical;
-
-  font-family:inherit;
-
-  outline:none;
-}
-
-textarea:focus{
-  border-color:var(--teal2);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(20,184,166,.12);
-}
-
-/* UPLOAD */
-
-.upload-container{
-  max-width:none;
-
-  margin:auto;
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
-}
-
-.upload-box{
-  padding:28px 18px;
-
-  border:
-    2px dashed
-    rgba(15,118,110,.35);
-
-  background:
-    rgba(15,118,110,.06);
-
-  color:#19524d;
-
-  border-radius:15px;
-
-  cursor:pointer;
-
-  text-align:center;
-
-  transition:.3s;
-
-  font-weight:500;
-}
-
-.upload-box:hover{
-  background:
-    rgba(20,184,166,.12);
-
-  border-color:
-    var(--teal2);
-}
-
-.upload-box input{
-  display:none;
-}
-
-/* BUTTON */
-
-button{
-  padding:11px 20px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--teal2),
-      var(--teal)
-    );
-
-  border:none;
-
-  color:white;
-
-  border-radius:30px;
-
-  cursor:pointer;
-
-  transition:.3s;
-
-  font-family:'Poppins',sans-serif;
-
-  font-size:13px;
-
-  font-weight:600;
-
-  box-shadow:
-    0 7px 18px
-    rgba(15,118,110,.25);
-}
-
-button:hover{
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 10px 24px
-    rgba(15,118,110,.32);
-}
-
-/* PREVIEW */
-
-#preview-container{
-  display:none;
-
-  margin-top:10px;
-
-  text-align:center;
-}
-
-#image-preview,
-#video-preview{
-  max-width:100%;
-
-  max-height:220px;
-
-  border-radius:12px;
-
-  box-shadow:
-    0 6px 15px
-    rgba(0,0,0,.2);
-}
-
-#video-preview{
-  display:none;
-}
-
-/* PROGRESS */
-
-.progress-bar{
-  width:100%;
-
-  height:10px;
-
-  background:
-    rgba(0,0,0,.1);
-
-  border-radius:50px;
-
-  overflow:hidden;
-
-  margin-top:5px;
-
-  display:none;
-}
-
-#progress-text{
-  display:none;
-
-  font-weight:600;
-
-  margin:0;
-
-  color:var(--teal);
-
-  font-size:12px;
-}
-
-#progress-fill{
-  width:0;
-
-  height:100%;
-
-  border-radius:50px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--teal2),
-      var(--gold)
-    );
-
-  transition:width .25s;
-}
-
-/* POPUPS */
-
-.popup{
-  position:fixed;
-
-  bottom:24px;
-
-  right:24px;
-
-  background:#153f3b;
-
-  color:white;
-
-  padding:12px 18px;
-
-  border-radius:10px;
-
-  opacity:0;
-
-  transform:translateY(25px);
-
-  transition:.4s;
-
-  z-index:9999;
-
-  box-shadow:
-    0 12px 30px
-    rgba(0,0,0,.25);
-}
-
-.popup.show{
-  opacity:1;
-
-  transform:translateY(0);
-}
-
-/* SHARED FILES */
-
-.files-panel{
-  background:var(--glass);
-
-  border:
-    1px solid var(--line);
-
-  border-radius:20px;
-
-  box-shadow:var(--shadow);
-
-  padding:22px;
-
-  backdrop-filter:blur(16px);
-}
-
-.file-list{
-  max-width:none;
-
-  margin:12px 0 0;
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:9px;
-
-  text-align:left;
-}
-
-.file-item{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  padding:13px 15px;
-
-  border-radius:13px;
-
-  background:
-    rgba(15,118,110,.07);
-
-  border:
-    1px solid
-    rgba(15,118,110,.12);
-}
-
-.file-name{
-  word-break:break-word;
-
-  font-weight:500;
-
-  font-size:12px;
-}
-
-.file-download{
-  display:inline-block;
-
-  background:var(--gold);
-
-  color:white;
-
-  padding:8px 13px;
-
-  border-radius:20px;
-
-  text-decoration:none;
-
-  white-space:nowrap;
-
-  font-size:11px;
-}
-
-.file-download:hover{
-  background:#9c741d;
-}
-
-#file-loading{
-  color:var(--teal);
-
-  font-weight:500;
-}
-
-#file-empty{
-  color:#777;
-}
-
-/* FOOTER */
-
-footer{
-  text-align:center;
-
-  padding:18px;
-
-  margin-top:10px;
-
-  background:
-    rgba(7,48,45,.86);
-
-  color:white;
-
-  border-top:
-    1px solid
-    rgba(228,189,91,.45);
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-  .grid,
-  .contact-row{
-    grid-template-columns:1fr;
-  }
-
-  header{
-    justify-content:flex-start;
-
-    padding-left:20px;
-  }
-
-  .header-brand{
-    text-align:left;
-  }
-
-  .header-brand p{
-    text-align:left;
-  }
-
-  .dark-toggle{
-    right:15px;
-  }
-
-  .hero{
-    min-height:300px;
-  }
-
-  .hero h2{
-    font-size:2rem;
-  }
-
-}
-
+:root{--gold:#d6a93a;--gold2:#f1cf70;--teal:#0d8179;--teal2:#16b8aa;--panel:rgba(7,25,29,.72);--panel2:rgba(12,35,39,.62);--border:rgba(218,193,119,.34);--white:#f7f5ee;--muted:#b9c2c0}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Poppins',sans-serif;color:var(--white);background:#061315;min-height:100vh;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(0,10,12,.48),rgba(0,10,12,.68)),url('kgf-climax.png') center center/cover fixed no-repeat;transform:scale(1.01)}body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 50% 18%,rgba(255,204,92,.12),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.2),transparent 22%,transparent 78%,rgba(0,0,0,.3))}
+body.dark:before{background:linear-gradient(180deg,rgba(0,5,7,.58),rgba(0,8,10,.78)),url('kgf-climax.png') center center/cover fixed no-repeat}
+body.dark:after{background:rgba(0,0,0,.18)}
+header{height:66px;position:sticky;top:0;z-index:1000;display:grid;grid-template-columns:260px 1fr 260px;align-items:center;padding:0 5.5%;background:rgba(5,18,21,.68);border-bottom:1px solid rgba(255,255,255,.13);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}.brand{display:flex;align-items:center;gap:10px}.brand-star{color:var(--gold2);font-size:25px;text-shadow:0 0 12px rgba(241,207,112,.35)}.brand h1{font-size:15px;letter-spacing:2px;margin:0;font-weight:700}.brand p{font-size:8px;margin:1px 0 0;color:#d9dedc}.nav{display:flex;justify-content:center;gap:8px;height:100%}.nav a{height:100%;padding:0 18px;display:flex;align-items:center;gap:8px;color:#e8ebe8;text-decoration:none;font-size:12px;position:relative;transition:.25s}.nav a:hover,.nav a.active{color:var(--gold2)}.nav a.active:after{content:"";position:absolute;bottom:0;left:15px;right:15px;height:2px;background:var(--gold2);box-shadow:0 0 10px rgba(241,207,112,.35)}.header-right{display:flex;justify-content:flex-end;align-items:center;gap:12px}.moon{font-size:15px}.dark-toggle{position:relative;top:auto;right:auto;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2);padding:5px 9px;border-radius:22px;cursor:pointer;font-size:10px;box-shadow:none}.dark-toggle:after{content:"";display:inline-block;width:14px;height:14px;border-radius:50%;background:#dfe4e2;vertical-align:middle;margin-left:7px;box-shadow:inset 0 0 0 3px #263134}
+section{width:min(1040px,88%);margin:0 auto;padding:18px 0}.hero{min-height:265px;padding-top:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.logo-circle{width:104px;height:104px;border-radius:50%;background:#020303;border:2px solid var(--gold2);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(214,169,58,.12),0 8px 30px rgba(0,0,0,.45);margin-bottom:9px}.logo-star{width:62px;height:62px;color:var(--gold2);filter:drop-shadow(0 2px 7px rgba(241,207,112,.38))}.hero .eyebrow{font-size:9px;letter-spacing:3px;margin:0 0 5px;color:#e9e3d1}.hero h2{font-size:30px;line-height:1.15;margin:0;letter-spacing:1px;text-shadow:0 3px 16px rgba(0,0,0,.6)}.hero h2 span{color:#e3b43e}.hero .tagline{font-size:11px;margin:8px 0 0}.hero .desc{font-size:10px;line-height:1.55;max-width:520px;margin:6px auto;color:#e5e8e5;font-style:italic}
+.section-title{display:flex;align-items:center;gap:14px;margin:2px 0 12px}.section-title:before{content:"";width:25px;height:2px;background:var(--gold2);box-shadow:0 0 8px rgba(241,207,112,.3)}.section-title:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(241,207,112,.4),transparent)}.section-title h2{margin:0;font-size:14px;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card,.contact,.files-panel{background:linear-gradient(145deg,rgba(8,28,33,.78),rgba(8,20,24,.58));border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.card{padding:15px}.card h3{display:flex;align-items:center;gap:9px;margin:0 0 11px;font-size:12px;letter-spacing:.4px}.card h3 i{color:#4bd0c4;background:rgba(22,184,170,.15);padding:8px;border-radius:9px}.card a{display:flex;align-items:center;justify-content:space-between;width:100%;margin:7px 0;padding:7px 10px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:20px;color:#f0f1ed;text-decoration:none;font-size:10px;transition:.25s}.card a:after{content:'›';font-size:17px;color:#b9bfc0}.card a:hover{border-color:rgba(241,207,112,.5);background:rgba(214,169,58,.12);transform:translateX(2px)}
+.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:min(1040px,88%);margin:0 auto}.contact{padding:15px}.contact h2{font-size:12px;margin:0 0 10px;letter-spacing:.5px}.contact h2:before{content:'✦';color:#48cfc3;margin-right:8px}.contact form{display:flex;flex-direction:column;gap:8px;max-width:none;margin:auto}textarea{min-height:72px;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.055);color:white;resize:none;font:10px 'Poppins',sans-serif;outline:none}textarea::placeholder{color:#889290}textarea:focus{border-color:rgba(22,184,170,.6)}.upload-container{max-width:none;margin:auto;display:flex;flex-direction:column;gap:8px}.upload-box{padding:18px 12px;border:1px dashed rgba(255,255,255,.35);background:rgba(255,255,255,.025);color:#e6e9e6;border-radius:10px;cursor:pointer;text-align:center;font-size:10px;transition:.25s}.upload-box:hover{border-color:var(--gold2);background:rgba(214,169,58,.06)}.upload-box input{display:none}button{padding:8px 18px;background:linear-gradient(135deg,#d5a53a,#9c731e);border:0;color:white;border-radius:22px;cursor:pointer;font:600 10px 'Poppins',sans-serif;box-shadow:0 5px 14px rgba(0,0,0,.22);transition:.25s}button:hover{transform:translateY(-1px);filter:brightness(1.08)}#preview-container{display:none;margin-top:6px;text-align:center}#image-preview,#video-preview{max-width:100%;max-height:160px;border-radius:9px}.progress-bar{width:100%;height:7px;background:rgba(255,255,255,.1);border-radius:50px;overflow:hidden;margin-top:3px;display:none}.progress-fill,#progress-fill{width:0;height:100%;border-radius:50px;background:linear-gradient(90deg,var(--teal2),var(--gold2));transition:width .25s}.popup{position:fixed;bottom:20px;right:20px;background:#143f3c;color:white;padding:10px 16px;border:1px solid rgba(241,207,112,.35);border-radius:9px;opacity:0;transform:translateY(20px);transition:.35s;z-index:9999;font-size:11px}.popup.show{opacity:1;transform:translateY(0)}
+.files-panel{padding:13px 15px;margin-top:0}.files-panel h2{font-size:12px;margin:0 0 2px}.files-panel>p{font-size:8px;color:#aeb8b5;margin:0 0 9px}.file-list{max-width:none;margin:0;display:flex;flex-direction:column;gap:7px;text-align:left}.file-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}.file-name{word-break:break-word;font-weight:500;font-size:9px}.file-download{display:inline-block;background:rgba(214,169,58,.18);border:1px solid rgba(214,169,58,.5);color:#f3d37b;padding:6px 12px;border-radius:18px;text-decoration:none;white-space:nowrap;font-size:9px}.file-download:hover{background:var(--gold);color:white}#file-loading{color:#53d2c6;font-weight:500;font-size:10px}#file-empty{color:#aaa;font-size:10px}footer{text-align:center;padding:10px;margin-top:4px;border-top:1px solid rgba(255,255,255,.1);background:rgba(3,17,19,.72);color:#bfc7c4;font-size:8px}footer p{margin:0}footer p::first-line{color:#d8b04a}
+@media(max-width:900px){header{grid-template-columns:1fr auto;height:auto;min-height:66px;padding:10px 4%}.nav{display:none}.header-right{grid-column:2;grid-row:1}.brand{grid-column:1}.grid,.contact-row{grid-template-columns:1fr}.hero h2{font-size:25px}.hero{min-height:300px}section,.contact-row{width:92%}}
 </style>
 
 </head>
 
 <body>
 
-<header>
+<header id="top"><div class="brand"><div class="brand-star">★</div><div><h1>SAVIOUR STAR</h1><p>Psychopath | Auraman | Criminal</p></div></div><nav class="nav"><a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a><a href="#about"><i class="fa-regular fa-user"></i> About</a><a href="#content"><i class="fa-regular fa-folder"></i> Content</a><a href="#upload"><i class="fa-solid fa-cloud-arrow-up"></i> Upload</a></nav><div class="header-right"><span class="moon">☾</span><button class="dark-toggle" onclick="toggleDark()">Dark Mode</button></div></header>
 
-<div class="header-brand">
+<section class="hero" id="home"><div class="logo-circle" aria-label="Saviour Star logo"><svg class="logo-star" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,5 61,38 96,38 68,58 79,93 50,72 21,93 32,58 4,38 39,38" fill="currentColor"/></svg></div><p class="eyebrow">WELCOME TO MY SPACE</p><h2>YOUR <span>SAVIOUR</span> IS HERE</h2><p class="tagline">Creative Developer &nbsp;•&nbsp; Designer &nbsp;•&nbsp; Problem Solver</p><p class="desc">“A space where I share my work, useful files, and resources.”<br>Feel free to explore, download or get in touch.</p></section>
 
-<h1>SAVIOUR STAR</h1>
-
-<p>
-Psychopath | Auraman | Criminal
-</p>
-
-</div>
-
-<button
-class="dark-toggle"
-onclick="toggleDark()">
-🌙
-</button>
-
-</header>
-
-
-<!-- HERO -->
-
-<section
-class="hero"
-id="home">
-
-<div
-class="logo-circle"
-aria-label="Saviour Star logo">
-
-<svg
-class="logo-star"
-viewBox="0 0 100 100"
-aria-hidden="true">
-
-<polygon
-points="50,5 61,38 96,38 68,58 79,93 50,72 21,93 32,58 4,38 39,38"
-fill="currentColor"/>
-
-</svg>
-
-</div>
-
-<p class="eyebrow">
-WELCOME TO MY SPACE
-</p>
-
-<h2>
-YOUR <span>SAVIOUR</span> IS HERE
-</h2>
-
-<p class="tagline">
-Creative Developer &nbsp;•&nbsp;
-Designer &nbsp;•&nbsp;
-Problem Solver
-</p>
-
-<p class="desc">
-A space where I share my work, useful files,
-and resources. Feel free to explore,
-download, or get in touch.
-</p>
-
-</section>
-
-
-<!-- MY CONTENT -->
+<section id="about" style="display:none"><h2>About Me</h2></section>
 
 <section id="content">
-
-<div class="section-title">
-<h2>MY CONTENT</h2>
-</div>
-
+<div class="section-title"><h2>MY CONTENT</h2></div>
 
 <div class="grid">
 
-
-<!-- TEXT FILES -->
-
 <div class="card">
 
-<h3>
-<i class="fa-solid fa-file"></i>
-TEXT FILES
-</h3>
+<h3><i class="fa-solid fa-file"></i> TEXT FILES</h3>
 
-<a href="10A.txt" download>
-📄 10A
-</a>
-
-<a href="10B.txt" download>
-📄 10B
-</a>
-
-<a href="10C.txt" download>
-📄 10C
-</a>
+<a href="10A.txt" download>📄 10A</a>
+<a href="10B.txt" download>📄 10B</a>
+<a href="10C.txt" download>📄 10C</a>
 
 </div>
 
-
-<!-- UPCOMING FILES -->
-
 <div class="card">
 
-<h3>
-<i class="fa-solid fa-code"></i>
-UPCOMING FILES
-</h3>
+<h3><i class="fa-solid fa-code"></i> UPCOMING FILES</h3>
 
-<a href="drawing1.dwg" download>
-📐 Drawing 1
-</a>
-
-<a href="drawing2.dwg" download>
-📐 Drawing 2
-</a>
-
-<a href="drawing3.dwg" download>
-📐 Drawing 3
-</a>
-
-<a href="drawing4.dwg" download>
-📐 Drawing 4
-</a>
+<a href="drawing1.dwg" download>📐 Drawing 1</a>
+<a href="drawing2.dwg" download>📐 Drawing 2</a>
+<a href="drawing3.dwg" download>📐 Drawing 3</a>
+<a href="drawing4.dwg" download>📐 Drawing 4</a>
 
 </div>
 
-
-<!-- DOCUMENTS -->
-
 <div class="card">
 
-<h3>
-<i class="fa-solid fa-folder"></i>
-DOCUMENTS
-</h3>
+<h3><i class="fa-solid fa-folder"></i> DOCUMENTS</h3>
 
-<a
-href="https://drive.google.com/drive/folders/1Xf1AdHJOPgPP55DD_AZ2QJFQ-Wot9zbI"
+<a href="https://drive.google.com/drive/folders/1Xf1AdHJOPgPP55DD_AZ2QJFQ-Wot9zbI"
 target="_blank">
-
 🎬 Movies here DARLING....
-
 </a>
 
+<p>
+
+</p>
+
+  <p style="font-size:11px;color:#888;margin-top:-5px;">
+  </p>
 
 <a
-href="https://hack.chat/?STARSASI"
-target="_blank"
-rel="noopener noreferrer">
-
-💬 CHAT LINK HERE
-
+  href="https://hack.chat/?STARSASI"
+  target="_blank"
+  rel="noopener noreferrer">
+  💬 CHAT LINK HERE
 </a>
 
 </div>
@@ -1038,44 +97,27 @@ rel="noopener noreferrer">
 
 </section>
 
+<div class="contact-row">
+<section class="contact" id="upload">
 
-<!-- MESSAGE + UPLOAD -->
-
-<section class="contact-row">
-
-
-<!-- MESSAGE -->
-
-<section class="contact">
-
-<h2>
-Send Message
-</h2>
+<h2>Send Message</h2>
 
 <form id="message-form">
 
 <textarea
 name="message"
 placeholder="Type message..."
-required>
-</textarea>
+required></textarea>
 
-<button type="submit">
-Send Message
-</button>
+<button type="submit">Send Message</button>
 
 </form>
 
 </section>
 
-
-<!-- UPLOAD -->
-
 <section class="contact">
 
-<h2>
-Upload File
-</h2>
+<h2>Upload File</h2>
 
 <div class="upload-container">
 
@@ -1096,35 +138,22 @@ accept="*/*">
 Maximum file size: 50 MB
 </p>
 
-
 <div id="preview-container">
 
 <img id="image-preview">
 
-<video
-id="video-preview"
-controls>
-</video>
+<video id="video-preview" controls></video>
 
 </div>
-
 
 <div class="progress-bar">
-
 <div id="progress-fill"></div>
-
 </div>
 
-<p id="progress-text">
-0%
-</p>
+<p id="progress-text">0%</p>
 
-<button
-type="button"
-onclick="uploadFile()">
-
+<button type="button" onclick="uploadFile()">
 UPLOAD
-
 </button>
 
 <p id="status"></p>
@@ -1133,18 +162,14 @@ UPLOAD
 
 </section>
 
-</section>
 
+</div>
 
 <!-- SHARED FILES -->
 
-<section>
+  <section>
 
-<div class="files-panel">
-
-<h2>
-📁 Shared Files
-</h2>
+<h2>📁 Shared Files</h2>
 
 <p>
 Files uploaded here are available to everyone.
@@ -1154,49 +179,26 @@ Files uploaded here are available to everyone.
 Loading files...
 </div>
 
-<div
-id="file-empty"
-style="display:none;">
-
+<div id="file-empty" style="display:none;">
 No files uploaded yet.
-
 </div>
 
-<div
-id="file-list"
-class="file-list">
-</div>
-
-</div>
+<div id="file-list" class="file-list"></div>
 
 </section>
 
 
-<!-- POPUPS -->
-
-<div
-id="popup"
-class="popup">
-
+<div id="popup" class="popup">
 MESSAGE SENT ⭐
-
 </div>
 
-
-<div
-id="upload-popup"
-class="popup">
-
+<div id="upload-popup" class="popup">
 UPLOADED SUCCESSFULLY ⭐
-
 </div>
-
 
 <footer>
 
-<p>
-© 2026 SAVIOUR STAR
-</p>
+<p>© 2026 SAVIOUR STAR</p>
 
 </footer>
 
@@ -1210,11 +212,12 @@ UPLOADED SUCCESSFULLY ⭐
 const SUPABASE_URL =
 "https://mfjwnecnrvwneomrcybi.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_mhZ5GrPUC2Ax6VxsaHms1A_m6_LSYrJ";
 
-const BUCKET_NAME =
-"STAR_FILES";
+const BUCKET_NAME = "STAR_FILES";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1235,7 +238,7 @@ document.body.classList.toggle("dark");
 
 
 /* =========================================
-   FILE SELECTION
+   FILE SELECTION + PREVIEW
 ========================================= */
 
 const fileInput =
@@ -1244,46 +247,33 @@ document.getElementById("fileInput");
 const uploadText =
 document.getElementById("upload-text");
 
+fileInput.addEventListener("change", function(){
 
-fileInput.addEventListener(
-"change",
-function(){
-
-const file =
-fileInput.files[0];
+const file = fileInput.files[0];
 
 const previewContainer =
-document.getElementById(
-"preview-container"
-);
+document.getElementById("preview-container");
 
 const imagePreview =
-document.getElementById(
-"image-preview"
-);
+document.getElementById("image-preview");
 
 const videoPreview =
-document.getElementById(
-"video-preview"
-);
+document.getElementById("video-preview");
 
 if(!file){
 return;
 }
 
 
-/* 50 MB */
+/* 50 MB LIMIT */
 
-const MAX_SIZE =
-50 * 1024 * 1024;
+const MAX_SIZE = 50 * 1024 * 1024;
 
 if(file.size > MAX_SIZE){
 
-alert(
-"File is larger than 50 MB."
-);
+alert("File is larger than 50 MB.");
 
-fileInput.value="";
+fileInput.value = "";
 
 uploadText.textContent =
 "Click to select a file";
@@ -1300,7 +290,7 @@ uploadText.textContent =
 "📄 " + file.name;
 
 
-/* IMAGE / VIDEO PREVIEW */
+/* PREVIEW ONLY IMAGE / VIDEO */
 
 if(
 file.type.startsWith("image/") ||
@@ -1316,8 +306,7 @@ URL.createObjectURL(file);
 
 if(file.type.startsWith("image/")){
 
-imagePreview.src =
-fileURL;
+imagePreview.src = fileURL;
 
 imagePreview.style.display =
 "block";
@@ -1325,14 +314,14 @@ imagePreview.style.display =
 videoPreview.style.display =
 "none";
 
-videoPreview.src="";
+videoPreview.src = "";
 
 }
 
-else{
 
-videoPreview.src =
-fileURL;
+else if(file.type.startsWith("video/")){
+
+videoPreview.src = fileURL;
 
 videoPreview.style.display =
 "block";
@@ -1340,7 +329,7 @@ videoPreview.style.display =
 imagePreview.style.display =
 "none";
 
-imagePreview.src="";
+imagePreview.src = "";
 
 }
 
@@ -1361,15 +350,10 @@ previewContainer.style.display =
 ========================================= */
 
 const msgForm =
-document.getElementById(
-"message-form"
-);
+document.getElementById("message-form");
 
 const popup =
-document.getElementById(
-"popup"
-);
-
+document.getElementById("popup");
 
 msgForm.addEventListener(
 "submit",
@@ -1399,12 +383,9 @@ msgForm.reset();
 
 popup.classList.add("show");
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 popup.classList.remove("show");
-},
-3000
-);
+},3000);
 
 }
 
@@ -1427,41 +408,31 @@ const file =
 fileInput.files[0];
 
 const status =
-document.getElementById(
-"status"
-);
+document.getElementById("status");
 
 const progressBar =
-document.querySelector(
-".progress-bar"
-);
+document.querySelector(".progress-bar");
 
 const progressFill =
-document.getElementById(
-"progress-fill"
-);
+document.getElementById("progress-fill");
 
 const progressText =
-document.getElementById(
-"progress-text"
-);
+document.getElementById("progress-text");
 
 const uploadPopup =
-document.getElementById(
-"upload-popup"
-);
+document.getElementById("upload-popup");
 
 
 if(!file){
 
-alert(
-"Select a file first."
-);
+alert("Select a file first.");
 
 return;
 
 }
 
+
+/* 50 MB CHECK */
 
 const MAX_SIZE =
 50 * 1024 * 1024;
@@ -1476,6 +447,8 @@ return;
 
 }
 
+
+/* SHOW PROGRESS */
 
 progressBar.style.display =
 "block";
@@ -1496,20 +469,23 @@ status.textContent =
 try{
 
 
+/*
+   Create a unique filename.
+
+   This prevents two people uploading
+   files with the same name from
+   accidentally replacing each other.
+*/
+
 const fileExtension =
 file.name.includes(".")
-?
-"." +
-file.name.split(".").pop()
-:
-"";
-
+? "." + file.name.split(".").pop()
+: "";
 
 const baseName =
 file.name
-.replace(/\.[^/.]+$/,"")
+.replace(/\.[^/.]+$/, "")
 .replace(/[^a-zA-Z0-9_-]/g,"_");
-
 
 const uniqueName =
 baseName +
@@ -1518,10 +494,9 @@ Date.now() +
 fileExtension;
 
 
-const {
-data,
-error
-} =
+/* UPLOAD */
+
+const { data, error } =
 await supabaseClient
 .storage
 .from(BUCKET_NAME)
@@ -1531,9 +506,7 @@ file,
 {
 cacheControl:"3600",
 upsert:false,
-contentType:
-file.type ||
-"application/octet-stream"
+contentType:file.type || "application/octet-stream"
 }
 );
 
@@ -1545,6 +518,10 @@ throw error;
 }
 
 
+/*
+   Upload completed.
+*/
+
 progressFill.style.width =
 "100%";
 
@@ -1555,33 +532,26 @@ status.textContent =
 "";
 
 
-uploadPopup.classList.add(
-"show"
-);
+uploadPopup.classList.add("show");
 
-setTimeout(
-()=>{
-uploadPopup.classList.remove(
-"show"
-);
-},
-3000
-);
+setTimeout(()=>{
+uploadPopup.classList.remove("show");
+},3000);
 
 
-fileInput.value="";
+/* RESET */
+
+fileInput.value = "";
 
 uploadText.textContent =
 "Click to select a file";
 
 document.getElementById(
 "preview-container"
-).style.display =
-"none";
+).style.display = "none";
 
 
-setTimeout(
-()=>{
+setTimeout(()=>{
 
 progressBar.style.display =
 "none";
@@ -1592,12 +562,15 @@ progressText.style.display =
 progressFill.style.width =
 "0%";
 
-},
-1000
-);
+},1000);
 
+
+/*
+   Reload shared files.
+*/
 
 loadFiles();
+
 
 }
 
@@ -1607,8 +580,7 @@ console.error(error);
 
 status.textContent =
 "❌ Upload failed: " +
-(error.message ||
-"Unknown error");
+(error.message || "Unknown error");
 
 progressBar.style.display =
 "none";
@@ -1625,7 +597,8 @@ progressText.style.display =
    LOAD SHARED FILES
 ========================================= */
 
-async function loadFiles(){
+
+ async function loadFiles(){
 
 const loading =
 document.getElementById(
@@ -1655,10 +628,8 @@ fileList.innerHTML =
 
 try{
 
-const {
-data,
-error
-} =
+
+const { data, error } =
 await supabaseClient
 .storage
 .from(BUCKET_NAME)
@@ -1666,12 +637,10 @@ await supabaseClient
 "",
 {
 limit:100,
-
 sort:{
 column:"created_at",
 order:"desc"
 }
-
 }
 );
 
@@ -1687,8 +656,7 @@ loading.style.display =
 "none";
 
 
-if(!data ||
-data.length===0){
+if(!data || data.length === 0){
 
 empty.style.display =
 "block";
@@ -1698,52 +666,42 @@ return;
 }
 
 
+/*
+   Create download links.
+*/
 data
-.filter(
-file =>
-file.name !==
-".emptyFolderPlaceholder"
-)
-.forEach(
-function(file){
+.filter(file => file.name !== ".emptyFolderPlaceholder")
+.forEach(function(file){
 
 const fileItem =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 fileItem.className =
 "file-item";
 
 
 const fileName =
-document.createElement(
-"span"
-);
+document.createElement("span");
 
 fileName.className =
 "file-name";
 
 fileName.textContent =
-"📄 " +
-file.name;
+"📄 " + file.name;
 
 
-const {
-data:publicData
-} =
+/*
+   Public URL
+*/
+
+const { data: publicData } =
 supabaseClient
 .storage
 .from(BUCKET_NAME)
-.getPublicUrl(
-file.name
-);
-
+.getPublicUrl(file.name);
 
 const download =
-document.createElement(
-"a"
-);
+document.createElement("a");
 
 download.className =
 "file-download";
@@ -1751,12 +709,11 @@ download.className =
 download.href =
 publicData.publicUrl +
 "?download=" +
-encodeURIComponent(
-file.name
-);
+encodeURIComponent(file.name);
 
 download.textContent =
 "⬇ Download";
+
 
 
 fileItem.appendChild(
@@ -1791,7 +748,7 @@ fileList.innerHTML =
 
 
 /* =========================================
-   LOAD FILES ON PAGE OPEN
+   LOAD FILES WHEN PAGE OPENS
 ========================================= */
 
 loadFiles();
@@ -1800,4 +757,4 @@ loadFiles();
 
 </body>
 
-</html>
+  </html>
