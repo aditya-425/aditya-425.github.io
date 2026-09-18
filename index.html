@@ -1,813 +1,2244 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STAR TERRITORY</title>
+  <link rel="icon" href="logo.png">
 
-<title>STAR TERRITORY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-<link rel="icon" href="logo.png">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  >
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --gold: #d6a93a;
+      --gold-light: #f1cf70;
 
-<!-- Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+      --teal: #0d8179;
+      --teal-light: #16b8aa;
 
-<style>
-:root{--gold:#d6a93a;--gold2:#f1cf70;--teal:#0d8179;--teal2:#16b8aa;--panel:rgba(7,25,29,.72);--panel2:rgba(12,35,39,.62);--border:rgba(218,193,119,.34);--white:#f7f5ee;--muted:#b9c2c0}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Poppins',sans-serif;color:var(--white);background:#061315;min-height:100vh;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;z-index:-3;background:linear-gradient(180deg,rgba(0,10,12,.48),rgba(0,10,12,.68)),url('kgf-climax.png') center center/cover fixed no-repeat;transform:scale(1.01)}body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 50% 18%,rgba(255,204,92,.12),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.2),transparent 22%,transparent 78%,rgba(0,0,0,.3))}
-body.dark:before{background:linear-gradient(180deg,rgba(0,5,7,.58),rgba(0,8,10,.78)),url('kgf-climax.png') center center/cover fixed no-repeat}
-body.dark:after{background:rgba(0,0,0,.18)}
-header{height:78px;position:sticky;top:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:9px 5.5%;background:rgba(5,18,21,.62);border-bottom:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}.brand-box{display:flex;align-items:center;gap:11px;padding:7px 16px 7px 9px;border:1px solid rgba(241,207,112,.32);border-radius:14px;background:rgba(2,10,12,.42);box-shadow:0 8px 24px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.05)}.brand-logo{width:42px;height:42px;border-radius:50%;background:#020303;border:1px solid var(--gold2);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px rgba(214,169,58,.1),0 4px 12px rgba(0,0,0,.35);flex:none}.brand-logo svg{width:27px;height:27px;color:var(--gold2);filter:drop-shadow(0 1px 4px rgba(241,207,112,.3))}.brand h1{font-size:15px;letter-spacing:2px;margin:0;font-weight:700}.brand p{font-size:8px;margin:1px 0 0;color:#d9dedc}.header-right{display:flex;align-items:center;gap:10px}.header-mode-box{display:flex;align-items:center;gap:8px;padding:6px 9px 6px 11px;border:1px solid rgba(241,207,112,.32);border-radius:14px;background:rgba(2,10,12,.42);box-shadow:0 8px 24px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.05)}.moon{font-size:15px;color:#f4f0df}.dark-toggle{position:relative;top:auto;right:auto;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.2);padding:6px 9px;border-radius:22px;cursor:pointer;font-size:10px;box-shadow:none}.dark-toggle:after{content:"";display:inline-block;width:14px;height:14px;border-radius:50%;background:#dfe4e2;vertical-align:middle;margin-left:7px;box-shadow:inset 0 0 0 3px #263134}
-section{width:min(1040px,88%);margin:0 auto;padding:18px 0}.hero{min-height:265px;padding-top:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.logo-circle{width:104px;height:104px;border-radius:50%;background:#020303;border:2px solid var(--gold2);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(214,169,58,.12),0 8px 30px rgba(0,0,0,.45);margin-bottom:9px}.logo-star{width:62px;height:62px;color:var(--gold2);filter:drop-shadow(0 2px 7px rgba(241,207,112,.38))}.hero .eyebrow{font-size:9px;letter-spacing:3px;margin:0 0 5px;color:#e9e3d1}.hero h2{font-size:30px;line-height:1.15;margin:0;letter-spacing:1px;text-shadow:0 3px 16px rgba(0,0,0,.6)}.hero h2 span{color:#e3b43e}.hero .tagline{font-size:11px;margin:8px 0 0}.hero .desc{font-size:10px;line-height:1.55;max-width:520px;margin:6px auto;color:#e5e8e5;font-style:italic}
-.section-title{display:flex;align-items:center;gap:14px;margin:2px 0 12px}.section-title:before{content:"";width:25px;height:2px;background:var(--gold2);box-shadow:0 0 8px rgba(241,207,112,.3)}.section-title:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(241,207,112,.4),transparent)}.section-title h2{margin:0;font-size:14px;letter-spacing:1px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card,.contact,.files-panel{background:linear-gradient(145deg,rgba(8,28,33,.78),rgba(8,20,24,.58));border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 28px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.card{padding:15px}.card h3{display:flex;align-items:center;gap:9px;margin:0 0 11px;font-size:12px;letter-spacing:.4px}.card h3 i{color:#4bd0c4;background:rgba(22,184,170,.15);padding:8px;border-radius:9px}.card a{position:relative;display:flex;align-items:center;justify-content:center;width:fit-content;min-width:100px;max-width:100%;margin:7px auto;padding:7px 32px 7px 16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:20px;color:#f0f1ed;text-decoration:none;font-size:10px;text-align:center;white-space:nowrap;transition:.25s}.card a:after{content:'›';position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:17px;color:#b9bfc0}.card a:hover{border-color:rgba(241,207,112,.5);background:rgba(214,169,58,.12);transform:translateY(-1px)}
-.contact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:min(1040px,88%);margin:0 auto}.contact{padding:15px}.contact h2{font-size:12px;margin:0 0 10px;letter-spacing:.5px}.contact h2:before{content:'✦';color:#48cfc3;margin-right:8px}.contact form{display:flex;flex-direction:column;gap:8px;max-width:none;margin:auto}textarea{min-height:72px;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.055);color:white;resize:none;font:10px 'Poppins',sans-serif;outline:none}textarea::placeholder{color:#889290}textarea:focus{border-color:rgba(22,184,170,.6)}.upload-container{max-width:none;margin:auto;display:flex;flex-direction:column;gap:8px}.upload-box{min-height:92px;padding:16px 12px;border:1px dashed rgba(255,255,255,.35);background:rgba(255,255,255,.025);color:#e6e9e6;border-radius:10px;cursor:pointer;text-align:center;font-size:10px;transition:.25s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}.upload-box:hover,.upload-box.dragover{border-color:var(--gold2);background:rgba(214,169,58,.1);box-shadow:inset 0 0 22px rgba(214,169,58,.04),0 0 14px rgba(214,169,58,.08)}.upload-box .drop-icon{font-size:20px;color:var(--gold2)}.upload-box .drop-main{font-weight:600}.upload-box .drop-sub{font-size:9px;color:#9fa9a6}.upload-box input{display:none}button{padding:8px 18px;background:linear-gradient(135deg,#d5a53a,#9c731e);border:0;color:white;border-radius:22px;cursor:pointer;font:600 10px 'Poppins',sans-serif;box-shadow:0 5px 14px rgba(0,0,0,.22);transition:.25s}button:hover{transform:translateY(-1px);filter:brightness(1.08)}#preview-container{display:none;margin-top:6px;text-align:center}#image-preview,#video-preview{max-width:100%;max-height:160px;border-radius:9px}.progress-bar{width:100%;height:7px;background:rgba(255,255,255,.1);border-radius:50px;overflow:hidden;margin-top:3px;display:none}.progress-fill,#progress-fill{width:0;height:100%;border-radius:50px;background:linear-gradient(90deg,var(--teal2),var(--gold2));transition:width .25s}.popup{position:fixed;bottom:20px;right:20px;background:#143f3c;color:white;padding:10px 16px;border:1px solid rgba(241,207,112,.35);border-radius:9px;opacity:0;transform:translateY(20px);transition:.35s;z-index:9999;font-size:11px}.popup.show{opacity:1;transform:translateY(0)}
-.files-panel{padding:13px 15px;margin-top:0}.files-panel h2{font-size:12px;margin:0 0 2px}.files-panel>p{font-size:8px;color:#aeb8b5;margin:0 0 9px}.file-list{max-width:none;margin:0;display:flex;flex-direction:column;gap:7px;text-align:left}.file-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}.file-name{word-break:break-word;font-weight:500;font-size:9px}.file-download{display:inline-block;background:rgba(214,169,58,.18);border:1px solid rgba(214,169,58,.5);color:#f3d37b;padding:6px 12px;border-radius:18px;text-decoration:none;white-space:nowrap;font-size:9px}.file-download:hover{background:var(--gold);color:white}#file-loading{color:#53d2c6;font-weight:500;font-size:10px}#file-empty{color:#aaa;font-size:10px}footer{text-align:center;padding:10px;margin-top:4px;border-top:1px solid rgba(255,255,255,.1);background:rgba(3,17,19,.72);color:#bfc7c4;font-size:8px}footer p{margin:0}footer p::first-line{color:#d8b04a}
-@media(max-width:900px){header{height:auto;min-height:68px;padding:8px 4%;gap:8px}.brand-box{padding:6px 11px 6px 7px;max-width:72%}.brand-logo{width:36px;height:36px}.brand-logo svg{width:23px;height:23px}.brand h1{font-size:12px;letter-spacing:1.5px}.brand p{font-size:7px}.header-mode-box{padding:5px 7px 5px 8px}.header-mode-box .moon{display:none}.dark-toggle{font-size:9px}.grid,.contact-row{grid-template-columns:1fr}.hero h2{font-size:25px}.hero{min-height:300px}section,.contact-row{width:92%}.card a{max-width:90%;overflow:hidden;text-overflow:ellipsis}}
-</style>
+      --white: #f7f5ee;
+      --muted: #b9c2c0;
+
+      /* Reduced opacity so the background is more visible */
+      --panel: rgba(7, 25, 29, 0.48);
+      --panel-light: rgba(12, 35, 39, 0.38);
+
+      --border: rgba(218, 193, 119, 0.30);
+
+      --shadow:
+        0 10px 28px rgba(0, 0, 0, 0.18),
+        inset 0 1px rgba(255, 255, 255, 0.05);
+
+      --radius: 14px;
+      --content-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family: "Poppins", sans-serif;
+      color: var(--white);
+      background: #061315;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 10, 12, 0.38),
+          rgba(0, 10, 12, 0.55)
+        ),
+        url("kgf-climax.png") center / cover fixed no-repeat;
+
+      transform: scale(1.01);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 50% 18%,
+          rgba(255, 204, 92, 0.10),
+          transparent 35%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.12),
+          transparent 22%,
+          transparent 78%,
+          rgba(0, 0, 0, 0.18)
+        );
+    }
+
+    body.dark::before {
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 5, 7, 0.50),
+          rgba(0, 8, 10, 0.68)
+        ),
+        url("kgf-climax.png") center / cover fixed no-repeat;
+    }
+
+    body.dark::after {
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 9px 5.5%;
+
+      background: rgba(5, 18, 21, 0.50);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .brand-box,
+    .header-mode-box {
+      display: flex;
+      align-items: center;
+
+      background: rgba(2, 10, 12, 0.30);
+      border: 1px solid rgba(241, 207, 112, 0.28);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .brand-box {
+      gap: 11px;
+      padding: 7px 16px 7px 9px;
+      border-radius: 14px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      flex: none;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      background: #020303;
+      border: 1px solid var(--gold-light);
+
+      box-shadow:
+        0 0 0 2px rgba(214, 169, 58, 0.10),
+        0 4px 12px rgba(0, 0, 0, 0.30);
+    }
+
+    .brand-logo svg {
+      width: 27px;
+      height: 27px;
+      color: var(--gold-light);
+      filter: drop-shadow(0 1px 4px rgba(241, 207, 112, 0.30));
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .brand p {
+      margin: 1px 0 0;
+      font-size: 8px;
+      color: #d9dedc;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-mode-box {
+      gap: 8px;
+      padding: 6px 9px 6px 11px;
+      border-radius: 14px;
+    }
+
+    .moon {
+      color: #f4f0df;
+      font-size: 15px;
+    }
+
+    .dark-toggle {
+      padding: 6px 9px;
+
+      color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 22px;
+
+      font: 500 10px "Poppins", sans-serif;
+      cursor: pointer;
+
+      box-shadow: none;
+    }
+
+    /* =========================
+       COMMON
+    ========================= */
+
+    section,
+    .contact-row {
+      width: min(var(--content-width), 88%);
+      margin-inline: auto;
+    }
+
+    section {
+      padding: 18px 0;
+    }
+
+    button,
+    .card a,
+    .file-download,
+    .file-delete,
+    .refresh-button {
+      transition: 0.25s ease;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+
+      padding: 8px 18px;
+
+      color: white;
+      background: linear-gradient(135deg, #d5a53a, #9c731e);
+
+      border-radius: 22px;
+
+      font: 600 10px "Poppins", sans-serif;
+
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.20);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 265px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding-top: 16px;
+
+      text-align: center;
+    }
+
+    .logo-circle {
+      width: 104px;
+      height: 104px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 9px;
+
+      border-radius: 50%;
+      background: #020303;
+      border: 2px solid var(--gold-light);
+
+      box-shadow:
+        0 0 0 4px rgba(214, 169, 58, 0.12),
+        0 8px 30px rgba(0, 0, 0, 0.38);
+    }
+
+    .logo-star {
+      width: 62px;
+      height: 62px;
+
+      color: var(--gold-light);
+
+      filter:
+        drop-shadow(0 2px 7px rgba(241, 207, 112, 0.38));
+    }
+
+    .hero .eyebrow {
+      margin: 0 0 5px;
+
+      color: #e9e3d1;
+
+      font-size: 9px;
+      letter-spacing: 3px;
+    }
+
+    .hero h2 {
+      margin: 0;
+
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: 1px;
+
+      text-shadow: 0 3px 16px rgba(0, 0, 0, 0.55);
+    }
+
+    .hero h2 span {
+      color: #e3b43e;
+    }
+
+    .hero .tagline {
+      margin: 8px 0 0;
+      font-size: 11px;
+    }
+
+    .hero .desc {
+      max-width: 520px;
+
+      margin: 6px auto;
+
+      color: #e5e8e5;
+
+      font-size: 10px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* =========================
+       SECTION HEADINGS
+    ========================= */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+
+      margin: 2px 0 12px;
+      text-align: center;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+
+      max-width: 180px;
+    }
+
+    .section-title::before {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(241, 207, 112, 0.50)
+      );
+    }
+
+    .section-title::after {
+      background: linear-gradient(
+        90deg,
+        rgba(241, 207, 112, 0.50),
+        transparent
+      );
+    }
+
+    .section-title h2,
+    .files-heading {
+      margin: 0;
+
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* =========================
+       PANELS / CARDS
+    ========================= */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .card,
+    .contact,
+    .files-panel {
+      /*
+        Reduced opacity:
+        background is now significantly more visible.
+      */
+      background:
+        linear-gradient(
+          145deg,
+          rgba(8, 28, 33, 0.50),
+          rgba(8, 20, 24, 0.34)
+        );
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
+
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .card {
+      padding: 15px;
+    }
+
+    .card h3 {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      margin: 0 0 11px;
+
+      font-size: 12px;
+      letter-spacing: 0.4px;
+    }
+
+    .card h3 i {
+      padding: 8px;
+
+      color: #4bd0c4;
+      background: rgba(22, 184, 170, 0.12);
+
+      border-radius: 9px;
+    }
+
+    .card a {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: fit-content;
+      min-width: 100px;
+
+      margin: 7px auto;
+      padding: 7px 32px 7px 16px;
+
+      color: #f0f1ed;
+      background: rgba(255, 255, 255, 0.045);
+
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 20px;
+
+      font-size: 10px;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .card a::after {
+      content: "›";
+
+      position: absolute;
+      right: 10px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: #b9bfc0;
+      font-size: 17px;
+    }
+
+    .card a:hover {
+      background: rgba(214, 169, 58, 0.10);
+      border-color: rgba(241, 207, 112, 0.45);
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       CONTACT / UPLOAD
+    ========================= */
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .contact {
+      padding: 15px;
+    }
+
+    .contact h2 {
+      margin: 0 0 10px;
+
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .contact h2::before {
+      content: "✦";
+
+      margin-right: 8px;
+      color: #48cfc3;
+    }
+
+    .contact form,
+    .upload-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    textarea {
+      min-height: 72px;
+
+      padding: 11px 12px;
+
+      color: white;
+      background: rgba(255, 255, 255, 0.045);
+
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 10px;
+
+      resize: none;
+      outline: none;
+
+      font: 10px "Poppins", sans-serif;
+    }
+
+    textarea::placeholder {
+      color: #889290;
+    }
+
+    textarea:focus {
+      border-color: rgba(22, 184, 170, 0.60);
+    }
+
+    .upload-box {
+      min-height: 92px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      padding: 16px 12px;
+
+      color: #e6e9e6;
+      background: rgba(255, 255, 255, 0.025);
+
+      border: 1px dashed rgba(255, 255, 255, 0.30);
+      border-radius: 10px;
+
+      cursor: pointer;
+      text-align: center;
+
+      font-size: 10px;
+    }
+
+    .upload-box:hover,
+    .upload-box.dragover {
+      background: rgba(214, 169, 58, 0.08);
+      border-color: var(--gold-light);
+
+      box-shadow:
+        inset 0 0 22px rgba(214, 169, 58, 0.03),
+        0 0 14px rgba(214, 169, 58, 0.07);
+    }
+
+    .drop-icon {
+      color: var(--gold-light);
+      font-size: 20px;
+    }
+
+    .drop-main {
+      font-weight: 600;
+    }
+
+    .drop-sub {
+      color: #9fa9a6;
+      font-size: 9px;
+    }
+
+    .upload-box input {
+      display: none;
+    }
+
+    .file-limit {
+      margin: 0;
+
+      color: #8e9996;
+
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* =========================
+       PREVIEW
+    ========================= */
+
+    #preview-container {
+      display: none;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    #image-preview,
+    #video-preview {
+      max-width: 100%;
+      max-height: 160px;
+
+      border-radius: 9px;
+    }
+
+    /* =========================
+       PROGRESS
+    ========================= */
+
+    .progress-wrapper {
+      display: none;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+
+      overflow: hidden;
+
+      background: rgba(255, 255, 255, 0.08);
+
+      border-radius: 50px;
+    }
+
+    #progress-fill {
+      width: 0;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--teal-light),
+          var(--gold-light)
+        );
+
+      border-radius: 50px;
+
+      transition: width 0.20s ease;
+    }
+
+    #progress-text {
+      margin: 4px 0 0;
+
+      color: #53d2c6;
+
+      font-size: 9px;
+      text-align: center;
+    }
+
+    #status {
+      min-height: 16px;
+      margin: 0;
+
+      font-size: 9px;
+      text-align: center;
+    }
+
+    /* =========================
+       SHARED FILES
+    ========================= */
+
+    .files-panel {
+      padding: 15px;
+    }
+
+    .files-heading-wrapper {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .files-heading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .files-heading i {
+      color: var(--gold-light);
+    }
+
+    .files-description {
+      margin: 3px 0 0;
+
+      color: #aeb8b5;
+
+      font-size: 8px;
+      text-align: center;
+    }
+
+    .files-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .refresh-button {
+      padding: 6px 11px;
+
+      color: #d9dedc;
+      background: rgba(255, 255, 255, 0.055);
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+
+      font-size: 9px;
+    }
+
+    .refresh-button:hover {
+      color: white;
+      border-color: rgba(241, 207, 112, 0.45);
+    }
+
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .file-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+
+      padding: 9px 10px;
+
+      background: rgba(255, 255, 255, 0.035);
+
+      border: 1px solid rgba(255, 255, 255, 0.075);
+      border-radius: 10px;
+    }
+
+    .file-info {
+      min-width: 0;
+    }
+
+    .file-name {
+      display: block;
+
+      overflow: hidden;
+
+      color: #f0f1ed;
+
+      font-size: 9px;
+      font-weight: 500;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-meta {
+      display: block;
+
+      margin-top: 2px;
+
+      color: #8d9996;
+
+      font-size: 7px;
+    }
+
+    .file-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .file-download,
+    .file-delete {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 6px 10px;
+
+      border-radius: 18px;
+
+      font-size: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .file-download {
+      color: #f3d37b;
+      background: rgba(214, 169, 58, 0.14);
+      border: 1px solid rgba(214, 169, 58, 0.42);
+    }
+
+    .file-download:hover {
+      color: white;
+      background: var(--gold);
+    }
+
+    .file-delete {
+      color: #ffb2b2;
+      background: rgba(180, 50, 50, 0.10);
+      border: 1px solid rgba(255, 100, 100, 0.25);
+      cursor: pointer;
+    }
+
+    .file-delete:hover {
+      color: white;
+      background: #9d3030;
+      border-color: #c64a4a;
+    }
+
+    #file-loading,
+    #file-empty {
+      padding: 8px;
+
+      color: #aeb8b5;
+
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* =========================
+       POPUPS
+    ========================= */
+
+    .popup {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+
+      padding: 10px 16px;
+
+      color: white;
+      background: #143f3c;
+
+      border: 1px solid rgba(241, 207, 112, 0.35);
+      border-radius: 9px;
+
+      opacity: 0;
+      transform: translateY(20px);
+
+      transition: 0.35s;
+
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .popup.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      margin-top: 4px;
+      padding: 10px;
+
+      background: rgba(3, 17, 19, 0.55);
+
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+      color: #bfc7c4;
+
+      font-size: 8px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    footer p::first-line {
+      color: #d8b04a;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      header {
+        min-height: 68px;
+        padding: 8px 4%;
+        gap: 8px;
+      }
+
+      .brand-box {
+        max-width: 72%;
+        padding: 6px 11px 6px 7px;
+      }
+
+      .brand-logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .brand-logo svg {
+        width: 23px;
+        height: 23px;
+      }
+
+      .brand h1 {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+      }
+
+      .brand p {
+        font-size: 7px;
+      }
+
+      .header-mode-box {
+        padding: 5px 7px 5px 8px;
+      }
+
+      .moon {
+        display: none;
+      }
+
+      .dark-toggle {
+        font-size: 9px;
+      }
+
+      .grid,
+      .contact-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 300px;
+      }
+
+      .hero h2 {
+        font-size: 25px;
+      }
+
+      section,
+      .contact-row {
+        width: 92%;
+      }
+
+      .card a {
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .file-item {
+        grid-template-columns: 1fr;
+      }
+
+      .file-actions {
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-title::before,
+      .section-title::after {
+        max-width: 70px;
+      }
+
+      .files-toolbar {
+        justify-content: center;
+      }
+
+      .file-name {
+        white-space: normal;
+        word-break: break-word;
+      }
+    }
+  </style>
 
 </head>
 
 <body>
 
-<header id="top">
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header id="top">
+
+```
 <div class="brand-box">
+
   <div class="brand-logo" aria-label="Saviour Star logo">
     <svg viewBox="0 0 100 100" aria-hidden="true">
-      <polygon points="50,5 61,38 96,38 68,58 79,93 50,72 21,93 32,58 4,38 39,38" fill="currentColor"/>
+      <polygon
+        points="50,5 61,38 96,38 68,58 79,93 50,72 21,93 32,58 4,38 39,38"
+        fill="currentColor"
+      />
     </svg>
   </div>
+
   <div class="brand">
-    <div><h1>SAVIOUR STAR</h1><p>[ WITH A HIDDEN SCAR ]</p></div>
+    <h1>SAVIOUR STAR</h1>
+    <p>[ WITH A HIDDEN SCAR ]</p>
   </div>
+
 </div>
+
 <div class="header-right">
+
   <div class="header-mode-box">
     <span class="moon">☾</span>
-    <button class="dark-toggle" onclick="toggleDark()">Dark Mode</button>
+
+    <button
+      type="button"
+      class="dark-toggle"
+      id="darkToggle"
+    >
+      Dark Mode
+    </button>
   </div>
+
 </div>
-</header>
+```
 
-<section class="hero" id="home"><div class="logo-circle" aria-label="Saviour Star logo"><svg class="logo-star" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,5 61,38 96,38 68,58 79,93 50,72 21,93 32,58 4,38 39,38" fill="currentColor"/></svg></div><p class="eyebrow">WELCOME TO MY TERRITORY</p><h2>YOUR <span>SAVIOUR</span> IS HERE</h2><p class="tagline">CREATOR &nbsp;•&nbsp; CONTROLLER &nbsp;•&nbsp; DESTROYER</p><p class="desc">“A space where I operate my underworld DARK operations.”<br>Feel free to get HUMILIATED.</p></section>
+  </header>
 
-<section id="about" style="display:none"><h2>About Me</h2></section>
+  <!-- =========================
+       HERO
+  ========================= -->
 
-<section id="content">
-<div class="section-title"><h2>MY CONTENT</h2></div>
+  <section class="hero" id="home">
+
+```
+<div class="logo-circle" aria-label="Saviour Star logo">
+
+  <svg
+    class="logo-star"
+    viewBox="0 0 100 100"
+    aria-hidden="true"
+  >
+    <polygon
+      points="50,5 61,38 96,38 68,58 79,93 50,72 21,93 32,58 4,38 39,38"
+      fill="currentColor"
+    />
+  </svg>
+
+</div>
+
+<p class="eyebrow">WELCOME TO MY TERRITORY</p>
+
+<h2>
+  YOUR <span>SAVIOUR</span> IS HERE
+</h2>
+
+<p class="tagline">
+  CREATOR &nbsp;•&nbsp; CONTROLLER &nbsp;•&nbsp; DESTROYER
+</p>
+
+<p class="desc">
+  “A space where I operate my underworld DARK operations.”
+  <br>
+  Feel free to get HUMILIATED.
+</p>
+```
+
+  </section>
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <section id="content">
+
+```
+<div class="section-title">
+  <h2>MY CONTENT</h2>
+</div>
 
 <div class="grid">
 
-<div class="card">
+  <article class="card">
 
-<h3><i class="fa-solid fa-file"></i> TEXT FILES</h3>
+    <h3>
+      <i class="fa-solid fa-file"></i>
+      TEXT FILES
+    </h3>
 
-<a href="10A.txt" download>📄 10A</a>
-<a href="10B.txt" download>📄 10B</a>
-<a href="10C.txt" download>📄 10C</a>
+    <a href="10A.txt" download>📄 10A</a>
+    <a href="10B.txt" download>📄 10B</a>
+    <a href="10C.txt" download>📄 10C</a>
+
+  </article>
+
+
+  <article class="card">
+
+    <h3>
+      <i class="fa-solid fa-code"></i>
+      UPCOMING FILES
+    </h3>
+
+    <a href="drawing1.dwg" download>📐 Drawing 1</a>
+    <a href="drawing2.dwg" download>📐 Drawing 2</a>
+    <a href="drawing3.dwg" download>📐 Drawing 3</a>
+    <a href="drawing4.dwg" download>📐 Drawing 4</a>
+
+  </article>
+
+
+  <article class="card">
+
+    <h3>
+      <i class="fa-solid fa-folder"></i>
+      DOCUMENTS
+    </h3>
+
+    <a
+      href="https://drive.google.com/drive/folders/1Xf1AdHJOPgPP55DD_AZ2QJFQ-Wot9zbI"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🎬 Movies here DARLING....
+    </a>
+
+    <a
+      href="https://hack.chat/?STARSASI"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 CHAT LINK HERE
+    </a>
+
+  </article>
 
 </div>
+```
 
-<div class="card">
+  </section>
 
-<h3><i class="fa-solid fa-code"></i> UPCOMING FILES</h3>
+  <!-- =========================
+       MESSAGE + UPLOAD
+  ========================= -->
 
-<a href="drawing1.dwg" download>📐 Drawing 1</a>
-<a href="drawing2.dwg" download>📐 Drawing 2</a>
-<a href="drawing3.dwg" download>📐 Drawing 3</a>
-<a href="drawing4.dwg" download>📐 Drawing 4</a>
+  <div class="contact-row">
 
-</div>
-
-<div class="card">
-
-<h3><i class="fa-solid fa-folder"></i> DOCUMENTS</h3>
-
-<a href="https://drive.google.com/drive/folders/1Xf1AdHJOPgPP55DD_AZ2QJFQ-Wot9zbI"
-target="_blank">
-🎬 Movies here DARLING....
-</a>
-
-<p>
-
-</p>
-
-  <p style="font-size:11px;color:#888;margin-top:-5px;">
-  </p>
-
-<a
-  href="https://hack.chat/?STARSASI"
-  target="_blank"
-  rel="noopener noreferrer">
-  💬 CHAT LINK HERE
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<div class="contact-row">
+```
 <section class="contact" id="upload">
 
-<h2>Send Message</h2>
+  <h2>Send Message</h2>
 
-<form id="message-form">
+  <form id="message-form">
 
-<textarea
-name="message"
-placeholder="Type message..."
-required></textarea>
+    <textarea
+      name="message"
+      placeholder="Type message..."
+      required
+    ></textarea>
 
-<button type="submit">Send Message</button>
+    <button type="submit">
+      Send Message
+    </button>
 
-</form>
+  </form>
 
 </section>
+
 
 <section class="contact">
 
-<h2>Upload File</h2>
+  <h2>Upload File</h2>
 
-<div class="upload-container">
+  <div class="upload-container">
 
-<label class="upload-box" id="dropZone">
-  <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
-  <span class="drop-main" id="upload-text">Drop your file here</span>
-  <span class="drop-sub">or click to choose a file</span>
-  <input type="file" id="fileInput" accept="*/*">
-</label>
+    <label
+      class="upload-box"
+      id="dropZone"
+      for="fileInput"
+    >
 
-<p style="font-size:13px;color:#777;">
-Maximum file size: 50 MB
-</p>
+      <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
 
-<div id="preview-container">
+      <span
+        class="drop-main"
+        id="upload-text"
+      >
+        Drop your file here
+      </span>
 
-<img id="image-preview">
+      <span class="drop-sub">
+        or click to choose a file
+      </span>
 
-<video id="video-preview" controls></video>
+      <input
+        type="file"
+        id="fileInput"
+        accept="*/*"
+      >
 
-</div>
+    </label>
 
-<div class="progress-bar">
-<div id="progress-fill"></div>
-</div>
+    <p class="file-limit">
+      Maximum file size: 50 MB
+    </p>
 
-<p id="progress-text">0%</p>
 
-<button type="button" onclick="uploadFile()">
-UPLOAD
-</button>
+    <div id="preview-container">
 
-<p id="status"></p>
+      <img
+        id="image-preview"
+        alt="Image preview"
+      >
 
-</div>
+      <video
+        id="video-preview"
+        controls
+      ></video>
+
+    </div>
+
+
+    <div
+      class="progress-wrapper"
+      id="progress-wrapper"
+    >
+
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+
+      <p id="progress-text">
+        0%
+      </p>
+
+    </div>
+
+
+    <button
+      type="button"
+      id="upload-button"
+    >
+      UPLOAD
+    </button>
+
+    <p id="status"></p>
+
+  </div>
 
 </section>
+```
 
+  </div>
 
-</div>
-
-<!-- SHARED FILES -->
+  <!-- =========================
+       SHARED FILES
+  ========================= -->
 
   <section>
 
-<h2>📁 Shared Files</h2>
+```
+<div class="files-panel">
 
-<p>
-Files uploaded here are available to everyone.
-</p>
+  <div class="files-heading-wrapper">
 
-<div id="file-loading">
-Loading files...
+    <h2 class="files-heading">
+      <i class="fa-solid fa-folder-open"></i>
+      SHARED FILES
+    </h2>
+
+    <p class="files-description">
+      Files uploaded here are available to everyone.
+    </p>
+
+  </div>
+
+
+  <div class="files-toolbar">
+
+    <button
+      type="button"
+      class="refresh-button"
+      id="refreshFiles"
+    >
+      <i class="fa-solid fa-rotate"></i>
+      Refresh
+    </button>
+
+  </div>
+
+
+  <div id="file-loading">
+    Loading files...
+  </div>
+
+  <div
+    id="file-empty"
+    style="display:none;"
+  >
+    No files uploaded yet.
+  </div>
+
+  <div
+    id="file-list"
+    class="file-list"
+  ></div>
+
 </div>
+```
 
-<div id="file-empty" style="display:none;">
-No files uploaded yet.
-</div>
+  </section>
 
-<div id="file-list" class="file-list"></div>
+  <!-- =========================
+       POPUPS
+  ========================= -->
 
-</section>
+  <div
+    id="popup"
+    class="popup"
+    role="status"
+  >
+    MESSAGE SENT TO ⭐
+  </div>
 
+  <div
+    id="upload-popup"
+    class="popup"
+    role="status"
+  >
+    UPLOADED SUCCESSFULLY ✅
+  </div>
 
-<div id="popup" class="popup">
-MESSAGE SENT TO ⭐
-</div>
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-<div id="upload-popup" class="popup">
-UPLOADED SUCCESSFULLY ✅
-</div>
+  <footer>
+    <p>© 2026 SAVIOUR STAR</p>
+  </footer>
 
-<footer>
+  <script>
+    "use strict";
 
-<p>© 2026 SAVIOUR STAR</p>
+    /* =========================================
+       CONFIGURATION
+    ========================================= */
 
-</footer>
+    const CONFIG = {
+      supabaseUrl:
+        "https://mfjwnecnrvwneomrcybi.supabase.co",
 
+      supabaseKey:
+        "sb_publishable_mhZ5GrPUC2Ax6VxsaHms1A_m6_LSYrJ",
 
-<script>
+      bucket:
+        "STAR_FILES",
 
-/* =========================================
-   SUPABASE CONFIGURATION
-========================================= */
+      maxFileSize:
+        50 * 1024 * 1024,
 
-const SUPABASE_URL =
-"https://mfjwnecnrvwneomrcybi.supabase.co";
+      formspreeUrl:
+        "https://formspree.io/f/xdapnpgo"
+    };
 
 
-const SUPABASE_KEY =
-"sb_publishable_mhZ5GrPUC2Ax6VxsaHms1A_m6_LSYrJ";
+    /* =========================================
+       SUPABASE
+    ========================================= */
 
-const BUCKET_NAME = "STAR_FILES";
+    const supabaseClient =
+      window.supabase.createClient(
+        CONFIG.supabaseUrl,
+        CONFIG.supabaseKey
+      );
 
 
-const supabaseClient =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
+    /* =========================================
+       DOM ELEMENTS
+    ========================================= */
 
+    const $ = (selector) =>
+      document.querySelector(selector);
 
-/* =========================================
-   DARK MODE
-========================================= */
+    const elements = {
+      body:
+        document.body,
 
-function toggleDark(){
+      darkToggle:
+        $("#darkToggle"),
 
-document.body.classList.toggle("dark");
+      fileInput:
+        $("#fileInput"),
 
-}
+      dropZone:
+        $("#dropZone"),
 
+      uploadText:
+        $("#upload-text"),
 
-/* =========================================
-   FILE SELECTION + PREVIEW
-========================================= */
+      previewContainer:
+        $("#preview-container"),
 
-const fileInput =
-document.getElementById("fileInput");
+      imagePreview:
+        $("#image-preview"),
 
-const uploadText =
-document.getElementById("upload-text");
+      videoPreview:
+        $("#video-preview"),
 
-fileInput.addEventListener("change", function(){
+      progressWrapper:
+        $("#progress-wrapper"),
 
-const file = fileInput.files[0];
+      progressFill:
+        $("#progress-fill"),
 
-const previewContainer =
-document.getElementById("preview-container");
+      progressText:
+        $("#progress-text"),
 
-const imagePreview =
-document.getElementById("image-preview");
+      uploadButton:
+        $("#upload-button"),
 
-const videoPreview =
-document.getElementById("video-preview");
+      status:
+        $("#status"),
 
-if(!file){
-return;
-}
+      messageForm:
+        $("#message-form"),
 
+      popup:
+        $("#popup"),
 
-/* 50 MB LIMIT */
+      uploadPopup:
+        $("#upload-popup"),
 
-const MAX_SIZE = 50 * 1024 * 1024;
+      fileLoading:
+        $("#file-loading"),
 
-if(file.size > MAX_SIZE){
+      fileEmpty:
+        $("#file-empty"),
 
-alert("File is larger than 50 MB.");
+      fileList:
+        $("#file-list"),
 
-fileInput.value = "";
+      refreshFiles:
+        $("#refreshFiles")
+    };
 
-uploadText.textContent =
-"Drop your file here";
 
-previewContainer.style.display =
-"none";
+    /* =========================================
+       HELPERS
+    ========================================= */
 
-return;
+    function showPopup(element) {
+      element.classList.add("show");
 
-}
+      setTimeout(() => {
+        element.classList.remove("show");
+      }, 3000);
+    }
 
 
-uploadText.textContent =
-"📄 " + file.name;
+    function formatFileSize(bytes) {
+      if (bytes < 1024) {
+        return `${bytes} B`;
+      }
 
+      if (bytes < 1024 * 1024) {
+        return `${(bytes / 1024).toFixed(1)} KB`;
+      }
 
-/* PREVIEW ONLY IMAGE / VIDEO */
+      return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
 
-if(
-file.type.startsWith("image/") ||
-file.type.startsWith("video/")
-){
 
-previewContainer.style.display =
-"block";
+    function formatDate(dateString) {
+      if (!dateString) {
+        return "Unknown date";
+      }
 
-const fileURL =
-URL.createObjectURL(file);
+      const date = new Date(dateString);
 
+      if (Number.isNaN(date.getTime())) {
+        return "Unknown date";
+      }
 
-if(file.type.startsWith("image/")){
+      return date.toLocaleString();
+    }
 
-imagePreview.src = fileURL;
 
-imagePreview.style.display =
-"block";
+    function sanitizeFileName(fileName) {
+      const extension =
+        fileName.includes(".")
+          ? "." + fileName.split(".").pop()
+          : "";
 
-videoPreview.style.display =
-"none";
+      const base =
+        fileName
+          .replace(/\.[^/.]+$/, "")
+          .replace(/[^a-zA-Z0-9_-]/g, "_")
+          .replace(/_+/g, "_")
+          .slice(0, 100);
 
-videoPreview.src = "";
+      return `${base || "file"}_${Date.now()}${extension}`;
+    }
 
-}
 
+    function resetPreview() {
+      elements.imagePreview.src = "";
+      elements.videoPreview.src = "";
 
-else if(file.type.startsWith("video/")){
+      elements.imagePreview.style.display = "none";
+      elements.videoPreview.style.display = "none";
 
-videoPreview.src = fileURL;
+      elements.previewContainer.style.display = "none";
+    }
 
-videoPreview.style.display =
-"block";
 
-imagePreview.style.display =
-"none";
+    function resetUploadUI() {
+      elements.fileInput.value = "";
 
-imagePreview.src = "";
+      elements.uploadText.textContent =
+        "Drop your file here";
 
-}
+      resetPreview();
 
-}
+      elements.progressWrapper.style.display =
+        "none";
 
-else{
+      elements.progressFill.style.width =
+        "0%";
 
-previewContainer.style.display =
-"none";
+      elements.progressText.textContent =
+        "0%";
 
-}
+      elements.status.textContent = "";
 
-});
+      elements.uploadButton.disabled =
+        false;
+    }
 
 
-/* =========================================
-   DRAG & DROP UPLOAD
-========================================= */
+    /* =========================================
+       DARK MODE
+    ========================================= */
 
-const dropZone = document.getElementById("dropZone");
+    function toggleDarkMode() {
+      elements.body.classList.toggle("dark");
 
-dropZone.addEventListener("dragover", function(e){
-  e.preventDefault();
-  dropZone.classList.add("dragover");
-});
+      localStorage.setItem(
+        "star-dark-mode",
+        elements.body.classList.contains("dark")
+          ? "on"
+          : "off"
+      );
+    }
 
-dropZone.addEventListener("dragleave", function(e){
-  e.preventDefault();
-  dropZone.classList.remove("dragover");
-});
 
-dropZone.addEventListener("drop", function(e){
-  e.preventDefault();
-  dropZone.classList.remove("dragover");
+    elements.darkToggle.addEventListener(
+      "click",
+      toggleDarkMode
+    );
 
-  const files = e.dataTransfer.files;
-  if(!files || !files.length) return;
 
-  const file = files[0];
-  const MAX_SIZE = 50 * 1024 * 1024;
+    if (
+      localStorage.getItem("star-dark-mode") === "on"
+    ) {
+      elements.body.classList.add("dark");
+    }
 
-  if(file.size > MAX_SIZE){
-    alert("File is larger than 50 MB.");
-    return;
-  }
 
-  try {
-    const transfer = new DataTransfer();
-    transfer.items.add(file);
-    fileInput.files = transfer.files;
-    fileInput.dispatchEvent(new Event("change", {bubbles:true}));
-  } catch(err) {
-    uploadText.textContent = "📄 " + file.name;
-  }
-});
+    /* =========================================
+       FILE PREVIEW
+    ========================================= */
 
+    function handleFile(file) {
+      if (!file) {
+        return false;
+      }
 
-/* =========================================
-   MESSAGE FORM
-========================================= */
+      if (file.size > CONFIG.maxFileSize) {
+        alert("File is larger than 50 MB.");
+        return false;
+      }
 
-const msgForm =
-document.getElementById("message-form");
+      elements.uploadText.textContent =
+        `📄 ${file.name}`;
 
-const popup =
-document.getElementById("popup");
+      resetPreview();
 
-msgForm.addEventListener(
-"submit",
-async function(e){
+      if (
+        file.type.startsWith("image/") ||
+        file.type.startsWith("video/")
+      ) {
+        const objectUrl =
+          URL.createObjectURL(file);
 
-e.preventDefault();
+        elements.previewContainer.style.display =
+          "block";
 
-const data =
-new FormData(msgForm);
+        if (file.type.startsWith("image/")) {
 
-const response =
-await fetch(
-"https://formspree.io/f/xdapnpgo",
-{
-method:"POST",
-body:data,
-headers:{
-"Accept":"application/json"
-}
-}
-);
+          elements.imagePreview.src =
+            objectUrl;
 
+          elements.imagePreview.style.display =
+            "block";
 
-if(response.ok){
+        } else {
 
-msgForm.reset();
+          elements.videoPreview.src =
+            objectUrl;
 
-popup.classList.add("show");
+          elements.videoPreview.style.display =
+            "block";
 
-setTimeout(()=>{
-popup.classList.remove("show");
-},3000);
+        }
+      }
 
-}
+      return true;
+    }
 
-else{
 
-alert("Message failed.");
+    elements.fileInput.addEventListener(
+      "change",
+      () => {
+        handleFile(
+          elements.fileInput.files[0]
+        );
+      }
+    );
 
-}
 
-});
+    /* =========================================
+       DRAG & DROP
+    ========================================= */
 
+    elements.dropZone.addEventListener(
+      "dragover",
+      (event) => {
+        event.preventDefault();
 
-/* =========================================
-   SUPABASE FILE UPLOAD
-========================================= */
+        elements.dropZone.classList.add(
+          "dragover"
+        );
+      }
+    );
 
-async function uploadFile(){
 
-const file =
-fileInput.files[0];
+    elements.dropZone.addEventListener(
+      "dragleave",
+      () => {
+        elements.dropZone.classList.remove(
+          "dragover"
+        );
+      }
+    );
 
-const status =
-document.getElementById("status");
 
-const progressBar =
-document.querySelector(".progress-bar");
+    elements.dropZone.addEventListener(
+      "drop",
+      (event) => {
+        event.preventDefault();
 
-const progressFill =
-document.getElementById("progress-fill");
+        elements.dropZone.classList.remove(
+          "dragover"
+        );
 
-const progressText =
-document.getElementById("progress-text");
+        const file =
+          event.dataTransfer.files[0];
 
-const uploadPopup =
-document.getElementById("upload-popup");
+        if (!file) {
+          return;
+        }
 
+        if (!handleFile(file)) {
+          return;
+        }
 
-if(!file){
+        try {
+          const transfer =
+            new DataTransfer();
 
-alert("Select a file first.");
+          transfer.items.add(file);
 
-return;
+          elements.fileInput.files =
+            transfer.files;
 
-}
+        } catch (error) {
+          console.warn(
+            "Could not assign dropped file:",
+            error
+          );
+        }
+      }
+    );
 
 
-/* 50 MB CHECK */
+    /* =========================================
+       UPLOAD
+    ========================================= */
 
-const MAX_SIZE =
-50 * 1024 * 1024;
+    async function uploadFile() {
 
-if(file.size > MAX_SIZE){
+      const file =
+        elements.fileInput.files[0];
 
-alert(
-"This file is larger than 50 MB."
-);
+      if (!file) {
+        alert("Select a file first.");
+        return;
+      }
 
-return;
+      if (file.size > CONFIG.maxFileSize) {
+        alert("This file is larger than 50 MB.");
+        return;
+      }
 
-}
 
+      elements.uploadButton.disabled =
+        true;
 
-/* SHOW PROGRESS */
+      elements.progressWrapper.style.display =
+        "block";
 
-progressBar.style.display =
-"block";
+      elements.progressFill.style.width =
+        "0%";
 
-progressText.style.display =
-"block";
+      elements.progressText.textContent =
+        "Preparing upload...";
 
-progressFill.style.width =
-"0%";
+      elements.status.textContent =
+        "Uploading to Supabase...";
 
-progressText.textContent =
-"Uploading...";
 
-status.textContent =
-"Uploading to Supabase...";
+      try {
 
+        /*
+          Supabase JS storage upload does not expose
+          byte-by-byte progress events.
 
-try{
+          The UI therefore shows:
+          1. Preparing
+          2. Uploading
+          3. Completed
 
+          For TRUE byte-level progress, use
+          XMLHttpRequest / TUS resumable uploads.
+        */
 
-/*
-   Create a unique filename.
+        const uniqueName =
+          sanitizeFileName(file.name);
 
-   This prevents two people uploading
-   files with the same name from
-   accidentally replacing each other.
-*/
 
-const fileExtension =
-file.name.includes(".")
-? "." + file.name.split(".").pop()
-: "";
+        elements.progressFill.style.width =
+          "15%";
 
-const baseName =
-file.name
-.replace(/\.[^/.]+$/, "")
-.replace(/[^a-zA-Z0-9_-]/g,"_");
+        elements.progressText.textContent =
+          "Uploading...";
 
-const uniqueName =
-baseName +
-"_" +
-Date.now() +
-fileExtension;
 
+        const { error } =
+          await supabaseClient
+            .storage
+            .from(CONFIG.bucket)
+            .upload(
+              uniqueName,
+              file,
+              {
+                cacheControl: "3600",
+                upsert: false,
+                contentType:
+                  file.type ||
+                  "application/octet-stream"
+              }
+            );
 
-/* UPLOAD */
 
-const { data, error } =
-await supabaseClient
-.storage
-.from(BUCKET_NAME)
-.upload(
-uniqueName,
-file,
-{
-cacheControl:"3600",
-upsert:false,
-contentType:file.type || "application/octet-stream"
-}
-);
+        if (error) {
+          throw error;
+        }
 
 
-if(error){
+        elements.progressFill.style.width =
+          "100%";
 
-throw error;
+        elements.progressText.textContent =
+          "100% — Complete";
 
-}
+        elements.status.textContent =
+          "Upload completed successfully.";
 
+        showPopup(
+          elements.uploadPopup
+        );
 
-/*
-   Upload completed.
-*/
 
-progressFill.style.width =
-"100%";
+        resetUploadUI();
 
-progressText.textContent =
-"100%";
+        await loadFiles();
 
-status.textContent =
-"";
+      } catch (error) {
 
+        console.error(
+          "Upload error:",
+          error
+        );
 
-uploadPopup.classList.add("show");
+        elements.status.textContent =
+          `❌ Upload failed: ${
+            error.message ||
+            "Unknown error"
+          }`;
 
-setTimeout(()=>{
-uploadPopup.classList.remove("show");
-},3000);
+        elements.progressWrapper.style.display =
+          "none";
 
+        elements.uploadButton.disabled =
+          false;
+      }
+    }
 
-/* RESET */
 
-fileInput.value = "";
+    elements.uploadButton.addEventListener(
+      "click",
+      uploadFile
+    );
 
-uploadText.textContent =
-"Drop your file here";
 
-document.getElementById(
-"preview-container"
-).style.display = "none";
+    /* =========================================
+       MESSAGE FORM
+    ========================================= */
 
+    elements.messageForm.addEventListener(
+      "submit",
+      async (event) => {
 
-setTimeout(()=>{
+        event.preventDefault();
 
-progressBar.style.display =
-"none";
+        const formData =
+          new FormData(
+            elements.messageForm
+          );
 
-progressText.style.display =
-"none";
+        try {
 
-progressFill.style.width =
-"0%";
+          const response =
+            await fetch(
+              CONFIG.formspreeUrl,
+              {
+                method: "POST",
+                body: formData,
 
-},1000);
+                headers: {
+                  Accept:
+                    "application/json"
+                }
+              }
+            );
 
 
-/*
-   Reload shared files.
-*/
+          if (!response.ok) {
+            throw new Error(
+              "Message submission failed."
+            );
+          }
 
-loadFiles();
 
+          elements.messageForm.reset();
 
-}
+          showPopup(
+            elements.popup
+          );
 
-catch(error){
+        } catch (error) {
 
-console.error(error);
+          console.error(
+            "Message error:",
+            error
+          );
 
-status.textContent =
-"❌ Upload failed: " +
-(error.message || "Unknown error");
+          alert(
+            "Message failed. Please try again."
+          );
+        }
+      }
+    );
 
-progressBar.style.display =
-"none";
 
-progressText.style.display =
-"none";
+    /* =========================================
+       CREATE FILE ELEMENT
+    ========================================= */
 
-}
+    function createFileItem(file) {
 
-}
+      const item =
+        document.createElement("div");
 
+      item.className =
+        "file-item";
 
-/* =========================================
-   LOAD SHARED FILES
-========================================= */
 
+      const info =
+        document.createElement("div");
 
- async function loadFiles(){
+      info.className =
+        "file-info";
 
-const loading =
-document.getElementById(
-"file-loading"
-);
 
-const empty =
-document.getElementById(
-"file-empty"
-);
+      const name =
+        document.createElement("span");
 
-const fileList =
-document.getElementById(
-"file-list"
-);
+      name.className =
+        "file-name";
 
+      name.textContent =
+        `📄 ${file.name}`;
 
-loading.style.display =
-"block";
 
-empty.style.display =
-"none";
+      const meta =
+        document.createElement("span");
 
-fileList.innerHTML =
-"";
+      meta.className =
+        "file-meta";
 
+      meta.textContent =
+        `${formatFileSize(
+          file.metadata?.size || 0
+        )} • ${
+          formatDate(file.created_at)
+        }`;
 
-try{
 
+      info.append(
+        name,
+        meta
+      );
 
-const { data, error } =
-await supabaseClient
-.storage
-.from(BUCKET_NAME)
-.list(
-"",
-{
-limit:100,
-sort:{
-column:"created_at",
-order:"desc"
-}
-}
-);
 
+      const actions =
+        document.createElement("div");
 
-if(error){
+      actions.className =
+        "file-actions";
 
-throw error;
 
-}
+      const {
+        data: publicData
+      } =
+        supabaseClient
+          .storage
+          .from(CONFIG.bucket)
+          .getPublicUrl(file.name);
 
 
-loading.style.display =
-"none";
+      const download =
+        document.createElement("a");
 
+      download.className =
+        "file-download";
 
-if(!data || data.length === 0){
+      download.href =
+        `${publicData.publicUrl}?download=${encodeURIComponent(file.name)}`;
 
-empty.style.display =
-"block";
+      download.target =
+        "_blank";
 
-return;
+      download.rel =
+        "noopener noreferrer";
 
-}
+      download.textContent =
+        "⬇ Download";
 
 
-/*
-   Create download links.
-*/
-data
-.filter(file => file.name !== ".emptyFolderPlaceholder")
-.forEach(function(file){
+      /*
+        Delete button is created here but hidden
+        unless ADMIN_MODE is enabled.
 
-const fileItem =
-document.createElement("div");
+        Do NOT expose unrestricted deletion
+        to ordinary visitors.
+      */
 
-fileItem.className =
-"file-item";
+      if (window.ADMIN_MODE === true) {
 
+        const deleteButton =
+          document.createElement("button");
 
-const fileName =
-document.createElement("span");
+        deleteButton.className =
+          "file-delete";
 
-fileName.className =
-"file-name";
+        deleteButton.type =
+          "button";
 
-fileName.textContent =
-"📄 " + file.name;
+        deleteButton.innerHTML =
+          "🗑 Delete";
 
+        deleteButton.addEventListener(
+          "click",
+          () => deleteFile(file.name)
+        );
 
-/*
-   Public URL
-*/
+        actions.append(
+          deleteButton
+        );
+      }
 
-const { data: publicData } =
-supabaseClient
-.storage
-.from(BUCKET_NAME)
-.getPublicUrl(file.name);
 
-const download =
-document.createElement("a");
+      actions.prepend(
+        download
+      );
 
-download.className =
-"file-download";
 
-download.href =
-publicData.publicUrl +
-"?download=" +
-encodeURIComponent(file.name);
+      item.append(
+        info,
+        actions
+      );
 
-download.textContent =
-"⬇ Download";
+      return item;
+    }
 
 
+    /* =========================================
+       LOAD FILES
+    ========================================= */
 
-fileItem.appendChild(
-fileName
-);
+    async function loadFiles() {
 
-fileItem.appendChild(
-download
-);
+      elements.fileLoading.style.display =
+        "block";
 
-fileList.appendChild(
-fileItem
-);
+      elements.fileEmpty.style.display =
+        "none";
 
-});
+      elements.fileList.innerHTML =
+        "";
 
-}
 
-catch(error){
+      try {
 
-console.error(error);
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .storage
+            .from(CONFIG.bucket)
+            .list(
+              "",
+              {
+                limit: 100,
+                sort: {
+                  column: "created_at",
+                  order: "desc"
+                }
+              }
+            );
 
-loading.style.display =
-"none";
 
-fileList.innerHTML =
-"<p>❌ Could not load shared files.</p>";
+        if (error) {
+          throw error;
+        }
 
-}
 
-}
+        elements.fileLoading.style.display =
+          "none";
 
 
-/* =========================================
-   LOAD FILES WHEN PAGE OPENS
-========================================= */
+        const files =
+          (data || []).filter(
+            file =>
+              file.name !==
+              ".emptyFolderPlaceholder"
+          );
 
-loadFiles();
 
-</script>
+        if (!files.length) {
+
+          elements.fileEmpty.style.display =
+            "block";
+
+          return;
+        }
+
+
+        files.forEach(
+          file => {
+            elements.fileList.appendChild(
+              createFileItem(file)
+            );
+          }
+        );
+
+      } catch (error) {
+
+        console.error(
+          "File loading error:",
+          error
+        );
+
+        elements.fileLoading.style.display =
+          "none";
+
+        elements.fileList.innerHTML =
+          `<p style="color:#ffaaa0;text-align:center;font-size:10px;">
+            ❌ Could not load shared files.
+          </p>`;
+      }
+    }
+
+
+    /* =========================================
+       DELETE FILE
+    ========================================= */
+
+    async function deleteFile(fileName) {
+
+      if (window.ADMIN_MODE !== true) {
+        return;
+      }
+
+
+      const confirmed =
+        confirm(
+          `Delete "${fileName}"?\n\nThis cannot be undone.`
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      try {
+
+        const { error } =
+          await supabaseClient
+            .storage
+            .from(CONFIG.bucket)
+            .remove([
+              fileName
+            ]);
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        await loadFiles();
+
+        alert(
+          "File deleted successfully."
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Delete error:",
+          error
+        );
+
+        alert(
+          `Delete failed: ${
+            error.message ||
+            "Unknown error"
+          }`
+        );
+      }
+    }
+
+
+    /* =========================================
+       REFRESH
+    ========================================= */
+
+    elements.refreshFiles.addEventListener(
+      "click",
+      async () => {
+
+        elements.refreshFiles.disabled =
+          true;
+
+        elements.refreshFiles.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i> Loading';
+
+        await loadFiles();
+
+        elements.refreshFiles.disabled =
+          false;
+
+        elements.refreshFiles.innerHTML =
+          '<i class="fa-solid fa-rotate"></i> Refresh';
+      }
+    );
+
+
+    /* =========================================
+       INITIAL LOAD
+    ========================================= */
+
+    loadFiles();
+
+  </script>
 
 </body>
-
-  </html>
+</html>
