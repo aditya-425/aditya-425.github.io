@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STAR TERRITORY IS</title>
+  <title>STAR TERRITORY </title>
   <meta name="description" content="Star Territory — the personal website of Saviour Star, featuring projects, files, content and more.">
   <link rel="canonical" href="https://starterritory.in/">
   <link rel="icon" href="logo.png">
@@ -725,49 +725,53 @@
       document.body.classList.toggle("dark");
     }
 
-    /* ========== BACKGROUND MUSIC ========== */
-    const bgAudio = document.getElementById("bg-audio");
-    const musicBtn = document.getElementById("music-toggle");
-    let isPlaying = false;
+/* ========== BACKGROUND MUSIC ========== */
+const bgAudio = document.getElementById("bg-audio");
+const musicBtn = document.getElementById("music-toggle");
+let isPlaying = false;
 
-    function playMusic() {
-      if (!bgAudio) return;
-      bgAudio.volume = 0.4;
-      bgAudio.play()
-        .then(() => {
-          isPlaying = true;
-          musicBtn.textContent = "❚❚";
-          musicBtn.classList.add("playing");
-        })
-        .catch(() => {
-          // Browser blocked autoplay – user must click the button
-        });
-    }
+function playMusic() {
+  if (!bgAudio) return;
+  bgAudio.volume = 0.4;
+  bgAudio.play()
+    .then(() => {
+      isPlaying = true;
+      musicBtn.textContent = "❚❚";
+      musicBtn.classList.add("playing");
+    })
+    .catch(() => {});
+}
 
-    function pauseMusic() {
-      bgAudio.pause();
-      isPlaying = false;
-      musicBtn.textContent = "♪";
-      musicBtn.classList.remove("playing");
-    }
+function pauseMusic() {
+  bgAudio.pause();
+  isPlaying = false;
+  musicBtn.textContent = "♪";
+  musicBtn.classList.remove("playing");
+}
 
-    musicBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      if (isPlaying) {
-        pauseMusic();
-      } else {
-        playMusic();
-      }
-    });
+// Reset button when audio finishes
+bgAudio.addEventListener("ended", () => {
+  isPlaying = false;
+  musicBtn.textContent = "♪";
+  musicBtn.classList.remove("playing");
+});
 
-    // Start on first user interaction
-    function tryAutoStart() {
-      if (!isPlaying) playMusic();
-    }
-    ["click", "touchstart", "keydown"].forEach(evt => {
-      document.addEventListener(evt, tryAutoStart, { once: true, passive: true });
-    });
+musicBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (isPlaying) {
+    pauseMusic();
+  } else {
+    playMusic();
+  }
+});
 
+// Start on first user interaction
+function tryAutoStart() {
+  if (!isPlaying) playMusic();
+}
+["click", "touchstart", "keydown"].forEach(evt => {
+  document.addEventListener(evt, tryAutoStart, { once: true, passive: true });
+});
     /* ========== FILE SELECTION + PREVIEW ========== */
     const fileInput = document.getElementById("fileInput");
     const uploadText = document.getElementById("upload-text");
