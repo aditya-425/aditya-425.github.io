@@ -42,6 +42,17 @@ const messageForm = document.getElementById("message-form");
 const popup = document.getElementById("popup");
 const uploadPopup = document.getElementById("upload-popup");
 
+const darkToggle = document.querySelector(".dark-toggle");
+const uploadButton = document.getElementById("upload-button");
+
+if (darkToggle) {
+  darkToggle.addEventListener("click", toggleDark);
+}
+
+if (uploadButton) {
+  uploadButton.addEventListener("click", uploadFile);
+}
+
 
 /* =========================================================
    FILE PREVIEW
