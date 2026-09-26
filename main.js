@@ -45,9 +45,6 @@ const uploadPopup = document.getElementById("upload-popup");
 const darkToggle = document.querySelector(".dark-toggle");
 const uploadButton = document.getElementById("upload-button");
 
-const darkToggle = document.querySelector(".dark-toggle");
-const uploadButton = document.getElementById("upload-button");
-
 if (darkToggle) {
   darkToggle.onclick = function () {
     toggleDark();
@@ -59,7 +56,6 @@ if (uploadButton) {
     uploadFile();
   };
 }
-
 
 /* =========================================================
    FILE PREVIEW
