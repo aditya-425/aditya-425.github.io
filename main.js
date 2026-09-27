@@ -592,18 +592,48 @@ async function loadFiles() {
         "file-item";
 
 
-      const fileName =
-        document.createElement(
-          "span"
-        );
+const fileInfo =
+  document.createElement("div");
 
-      fileName.className =
-        "file-name";
-
-      fileName.textContent =
-        "📄 " + file.name;
+fileInfo.className =
+  "file-info";
 
 
+const fileName =
+  document.createElement("span");
+
+fileName.className =
+  "file-name";
+
+fileName.textContent =
+  "📄 " + file.name;
+
+
+const uploadDate =
+  document.createElement("small");
+
+uploadDate.className =
+  "upload-date";
+
+
+if (file.created_at) {
+
+  const date =
+    new Date(file.created_at);
+
+  uploadDate.textContent =
+    "Uploaded: " +
+    date.toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata"
+    });
+
+}
       const publicResult =
         supabaseClient.storage
           .from(BUCKET_NAME)
@@ -633,13 +663,11 @@ async function loadFiles() {
         "⬇ Download";
 
 
-      fileItem.appendChild(
-        fileName
-      );
+fileInfo.appendChild(fileName);
+fileInfo.appendChild(uploadDate);
 
-      fileItem.appendChild(
-        download
-      );
+fileItem.appendChild(fileInfo);
+fileItem.appendChild(download);
 
 
       fileList.appendChild(
